@@ -68,7 +68,7 @@ const TrackExercise = () => {
           <IconButton color={state.exerciseType === 'Gym' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Gym' })}>
             <FitnessCenterIcon fontSize="large" />
           </IconButton>
-          <IconButton color={state.exerciseType === 'Dance' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Dance' })}>
+          <IconButton color={state.exerciseType === 'Other' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Other' })}>
             <OtherIcon fontSize="large" /> 
           </IconButton>
         </div>
