@@ -6,7 +6,15 @@ const exerciseSchema = new Schema(
   {
     username: { type: String, required: true },
     description: { type: String, required: true },
-    duration: { type: Number, required: true },
+    duration: { 
+        type: Number, 
+        required: true,
+        validate: {
+            validator: Number.isInteger,
+            message: 'Duration should be an integer.'
+        },
+        min: [1, 'Duration should be positive.']
+    },
     date: { type: Date, required: true },
   },
   { timestamps: true }
