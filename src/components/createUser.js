@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import * as api from '../api';
+import { createUser } from '../api';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CreateUser = () => {
   const [username, setUsername] = useState('');
@@ -10,13 +11,12 @@ const CreateUser = () => {
     e.preventDefault();
     
     try {
-        await api.createUser({ username });
-        console.log('User added successfully:', username);
-        setMessage(`User ${username} has been created successfully!`); 
-        setTimeout(() => setMessage(''), 2000); 
+        const response = await createUser({ username });
+        console.log('User added successfully:', username, response.data);
+        setMessage('User created successfully!');
+        setTimeout(() => setMessage(''), 2000);
     } catch (error) {
         console.error('There was an error adding the user!', error);
-        setMessage(''); 
     }
 
     setUsername('');
@@ -25,8 +25,8 @@ const CreateUser = () => {
   return (
     <div>
       <h3>Create New User</h3>
-      <Form onSubmit={onSubmit}>
-        <Form.Group controlId="username">
+      <Form onSubmit={onSubmit} style={{ maxWidth: '400px', margin: 'auto' }}>
+        <Form.Group controlId="username" style={{ marginBottom: '30px', marginTop: '30px' }}>
           <Form.Label>Username:</Form.Label>
           <Form.Control 
             type="text" 
@@ -36,10 +36,10 @@ const CreateUser = () => {
           />
         </Form.Group>
         <Button variant="primary" type="submit">
-          Create User
+          Sign Up
         </Button>
       </Form>
-      {message && <p className="success-message">{message}</p>} 
+      {message && <p style={{color: 'green', marginTop: '20px'}}>{message}</p>}
     </div>
   );
 };
