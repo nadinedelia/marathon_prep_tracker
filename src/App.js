@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateUser from './components/createUser';
 import TrackExercise from './components/trackExercise';
 import React, { useState, useEffect } from 'react';
+import Footer from './components/footer';
+
 
 function App() {
   const [activeWindowCounter, setActiveWindowCounter] = useState(1); 
@@ -34,6 +36,7 @@ function App() {
         {activeWindowCounter === 0 && <CreateUser />}
         {activeWindowCounter === 1 && <TrackExercise />}
       </div>
+      <Footer />
     </div>
   );
 }
