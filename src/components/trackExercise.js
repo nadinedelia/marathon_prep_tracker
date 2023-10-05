@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { trackExercise } from '../api';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const TrackExercise = () => {
   const [state, setState] = useState({
@@ -8,20 +10,30 @@ const TrackExercise = () => {
     duration: 0,
     date: new Date(),
   });
+  const [message, setMessage] = useState(''); 
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
-    // tbc API
-    console.log('Exercise submitted:', state);
+    try {
+      const response = await trackExercise(state);
+      console.log(response.data);
 
-    setState({
-      username: '',
-      description: '',
-      duration: 0,
-      date: new Date(),
-    });
+      setState({
+        username: '',
+        description: '',
+        duration: 0,
+        date: new Date(),
+      });
+
+      setMessage('Activity logged successfully! Well done!');
+      setTimeout(() => setMessage(''), 2000);
+      
+    } catch (error) {
+      console.error('There was an error logging your activity!', error);
+    }
   };
+
 
   return (
     <div>
@@ -58,6 +70,7 @@ const TrackExercise = () => {
           Save activity
         </Button>
       </Form>
+      {message && <p style={{color: 'green'}}>{message}</p>}
     </div>
   );
 };
