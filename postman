@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "74fcfa13-9629-40f3-91ee-20e7d7bfd344",
 		"name": "CFG-fitnessapp",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "15208840"
 	},
 	"item": [
@@ -21,7 +21,18 @@
 					"mode": "raw",
 					"raw": "{\n    \"username\": \"john\"\n}\n"
 				},
-				"url": "http://localhost:5300/users/add"
+				"url": {
+					"raw": "http://localhost:5300/users/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5300",
+					"path": [
+						"users",
+						"add"
+					]
+				}
 			},
 			"response": []
 		},
@@ -30,7 +41,17 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:5300/users"
+				"url": {
+					"raw": "http://localhost:5300/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5300",
+					"path": [
+						"users"
+					]
+				}
 			},
 			"response": []
 		},
@@ -118,9 +139,20 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"nadine\",\n    \"description\": \"Running\",\n    \"duration\": 30,\n    \"date\": \"2023-10-05T00:00:00Z\"\n}\n"
+					"raw": "{\n    \"username\": \"nadine\",\n    \"exerciseType\": \"Running\",\n    \"description\": \"fast\",\n    \"duration\": 30,\n    \"date\": \"2023-10-05T00:00:00Z\"\n}\n"
 				},
-				"url": "http://localhost:5300/exercises/add"
+				"url": {
+					"raw": "http://localhost:5300/exercises/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5300",
+					"path": [
+						"exercises",
+						"add"
+					]
+				}
 			},
 			"response": []
 		},
@@ -129,7 +161,17 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": "http://localhost:5300/exercises"
+				"url": {
+					"raw": "http://localhost:5300/exercises",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5300",
+					"path": [
+						"exercises"
+					]
+				}
 			},
 			"response": []
 		},
