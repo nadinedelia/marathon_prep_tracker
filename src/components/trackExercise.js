@@ -12,10 +12,9 @@ const TrackExercise = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    // Here you would typically send the exercise data to your API
+    // tbc API
     console.log('Exercise submitted:', state);
 
-    // Clear the form fields
     setState({
       username: '',
       description: '',
@@ -27,8 +26,8 @@ const TrackExercise = () => {
   return (
     <div>
       <h3>Track exercise</h3>
-      <Form onSubmit={onSubmit}>
-        <Form.Group controlId="username">
+      <Form onSubmit={onSubmit} style={{ maxWidth: '400px', margin: 'auto' }}>
+        <Form.Group controlId="username" style={{ marginBottom: '20px' }}>
           <Form.Label>Username:</Form.Label>
           <Form.Control 
             type="text" 
@@ -37,7 +36,7 @@ const TrackExercise = () => {
             onChange={(e) => setState({ ...state, username: e.target.value })}
           />
         </Form.Group>
-        <Form.Group controlId="description">
+        <Form.Group controlId="description" style={{ marginBottom: '20px' }}>
           <Form.Label>Description:</Form.Label>
           <Form.Control 
             type="text" 
@@ -46,7 +45,7 @@ const TrackExercise = () => {
             onChange={(e) => setState({ ...state, description: e.target.value })}
           />
         </Form.Group>
-        <Form.Group controlId="duration">
+        <Form.Group controlId="duration" style={{ marginBottom: '40px' }}>
           <Form.Label>Duration (in minutes):</Form.Label>
           <Form.Control 
             type="number" 
@@ -55,7 +54,7 @@ const TrackExercise = () => {
             onChange={(e) => setState({ ...state, duration: e.target.value })}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="success" type="submit">
           Save activity
         </Button>
       </Form>
