@@ -36,4 +36,32 @@ router.post('/add', async (req, res) => {
   }
 });
 
+// GET: Retrieve a user by ID
+router.get('/:id', async (req, res) => {
+    try {
+      const user = await User.findById(req.params.id);
+      if (!user) {
+        res.status(404).json({ error: 'User not found' });
+        return;
+      }
+      res.json(user);
+    } catch (error) {
+      res.status(400).json({ error: 'Error: ' + error.message });
+    }
+  });
+
+// DELETE: Delete a user by ID
+router.delete('/:id', async (req, res) => {
+    try {
+      const deletedUser = await User.findByIdAndDelete(req.params.id);
+      if (!deletedUser) {
+        res.status(404).json({ error: 'User not found' });
+        return;
+      }
+      res.json({ message: 'User deleted.' });
+    } catch (error) {
+      res.status(400).json({ error: 'Error: ' + error.message });
+    }
+  });
+
 module.exports = router;
