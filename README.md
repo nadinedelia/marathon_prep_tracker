@@ -52,7 +52,3 @@ The application is containerized using Docker and can be deployed on any platfor
 ```
 docker-compose up
 ```
-
-
-### License
-This project is licensed under the MIT License.
