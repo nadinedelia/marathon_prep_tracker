@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5300;
 const uri = process.env.MONGODB_URI;
 
 // Middleware setup
@@ -13,7 +13,7 @@ app.use(express.json());
 
 // MongoDB connection
 mongoose
-  .connect(uri, { useNewUrlParser: true, useCreateIndex: true })
+  .connect(uri, { useNewUrlParser: true })
   .then(() => console.log("MongoDB database connection established successfully"))
   .catch((error) => console.error("MongoDB connection error:", error));
 
