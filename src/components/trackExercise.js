@@ -56,7 +56,7 @@ const TrackExercise = () => {
           />
         </Form.Group>
         <Button variant="primary" type="submit">
-          Create Exercise Log
+          Save activity
         </Button>
       </Form>
     </div>

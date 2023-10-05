@@ -5,41 +5,38 @@ import TrackExercise from './components/trackExercise';
 import React, { useState, useEffect } from 'react';
 
 function App() {
-  const [activeWindowCounter, setActiveWindowCounter] = useState(0);
-  const [textUnderNavigationArrows, setTextUnderNavigationArrows] = useState(['','']);
+  const [activeWindowCounter, setActiveWindowCounter] = useState(1); 
+  const [textUnderNavigationArrows, setTextUnderNavigationArrows] = useState(['Create User', '']);
 
   const handleNavigation = () => {
-    if (activeWindowCounter === 0) {
-      setActiveWindowCounter(1);
-    } else {
-      setActiveWindowCounter(0);
-    }
+    setActiveWindowCounter((prev) => 1 - prev); // toggles between 0 and 1
   };
-  
+
   useEffect(() => {
     setTextUnderNavigationArrows(
-      activeWindowCounter === 0 ? ['','Track Exercise'] : ['Create User','']
+      activeWindowCounter === 1 ? ['Create User', ''] : ['Track Exercise', '']
     );
   }, [activeWindowCounter]);
 
   return (
     <div className="App">
-        <div className="appTitle">
-          <h1>CFG Fitness App</h1>
-        </div>
+      <div className="appTitle">
+        <h1>CFG Fitness App</h1>
+      </div>
 
-        <div className="navigationArrowsContainer">
-          <button onClick={handleNavigation} className="navigationButton">
-            {textUnderNavigationArrows[activeWindowCounter === 0 ? 1 : 0]}
-          </button>
-        </div>
+      <div className="navigationArrowsContainer">
+        <button onClick={handleNavigation} className="navigationButton">
+          {textUnderNavigationArrows[0]}
+        </button>
+      </div>
 
-        <div className="componentContainer">
-          <CreateUser className={activeWindowCounter === 0 ? 'activeWindow' : 'hiddenWindow'}/>
-          <TrackExercise className={activeWindowCounter === 1 ? 'activeWindow' : 'hiddenWindow'}/>
-        </div>
+      <div className="componentContainer">
+        {activeWindowCounter === 0 && <CreateUser />}
+        {activeWindowCounter === 1 && <TrackExercise />}
+      </div>
     </div>
   );
 }
 
 export default App;
+
