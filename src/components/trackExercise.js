@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { trackExercise } from '../api';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import IconButton from '@material-ui/core/IconButton';
+import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
+import BikeIcon from '@material-ui/icons/DirectionsBike';
+import PoolIcon from '@material-ui/icons/Pool';
+import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
+import OtherIcon from '@material-ui/icons/HelpOutline';
 
 const TrackExercise = () => {
   const [state, setState] = useState({
     username: '',
+    exerciseType: '',
     description: '',
     duration: 0,
     date: new Date(),
@@ -21,6 +28,7 @@ const TrackExercise = () => {
 
       setState({
         username: '',
+        exerciseType: '',
         description: '',
         duration: 0,
         date: new Date(),
@@ -48,10 +56,28 @@ const TrackExercise = () => {
             onChange={(e) => setState({ ...state, username: e.target.value })}
           />
         </Form.Group>
+        <div style={{ marginBottom: '20px' }}>
+          <IconButton color={state.exerciseType === 'Running' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Running' })}>
+            <DirectionsRunIcon fontSize="large" />
+          </IconButton>
+          <IconButton color={state.exerciseType === 'Cycling' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Cycling' })}>
+            <BikeIcon fontSize="large" />
+          </IconButton>
+          <IconButton color={state.exerciseType === 'Swimming' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Swimming' })}>
+            <PoolIcon fontSize="large" />
+          </IconButton>
+          <IconButton color={state.exerciseType === 'Gym' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Gym' })}>
+            <FitnessCenterIcon fontSize="large" />
+          </IconButton>
+          <IconButton color={state.exerciseType === 'Dance' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Dance' })}>
+            <OtherIcon fontSize="large" /> 
+          </IconButton>
+        </div>
         <Form.Group controlId="description" style={{ marginBottom: '20px' }}>
           <Form.Label>Description:</Form.Label>
           <Form.Control 
-            type="text" 
+            as="textarea"
+            rows={3}
             required 
             value={state.description} 
             onChange={(e) => setState({ ...state, description: e.target.value })}
