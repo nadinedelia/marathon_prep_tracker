@@ -4,6 +4,7 @@ import * as api from '../api';
 
 const CreateUser = () => {
   const [username, setUsername] = useState('');
+  const [message, setMessage] = useState(''); 
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -11,8 +12,11 @@ const CreateUser = () => {
     try {
         await api.createUser({ username });
         console.log('User added successfully:', username);
+        setMessage(`User ${username} has been created successfully!`); 
+        setTimeout(() => setMessage(''), 2000); 
     } catch (error) {
         console.error('There was an error adding the user!', error);
+        setMessage(''); 
     }
 
     setUsername('');
@@ -35,6 +39,7 @@ const CreateUser = () => {
           Create User
         </Button>
       </Form>
+      {message && <p className="success-message">{message}</p>} 
     </div>
   );
 };
