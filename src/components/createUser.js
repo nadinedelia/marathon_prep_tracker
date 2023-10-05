@@ -26,7 +26,7 @@ const CreateUser = () => {
     <div>
       <h3>Create New User</h3>
       <Form onSubmit={onSubmit} style={{ maxWidth: '400px', margin: 'auto' }}>
-        <Form.Group controlId="username" style={{ marginBottom: '30px', marginTop: '30px' }}>
+        <Form.Group controlId="username" className="form-margin">
           <Form.Label>Username:</Form.Label>
           <Form.Control 
             type="text" 

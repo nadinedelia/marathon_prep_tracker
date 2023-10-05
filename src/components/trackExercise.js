@@ -42,12 +42,11 @@ const TrackExercise = () => {
     }
   };
 
-
   return (
     <div>
       <h3>Track exercise</h3>
       <Form onSubmit={onSubmit} style={{ maxWidth: '400px', margin: 'auto' }}>
-        <Form.Group controlId="username" style={{ marginBottom: '20px', marginTop: '30px' }}>
+        <Form.Group controlId="username" className="form-margin">
           <Form.Label>Username:</Form.Label>
           <Form.Control 
             type="text" 
