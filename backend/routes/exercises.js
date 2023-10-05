@@ -15,11 +15,13 @@ router.get('/', async (req, res) => {
   
 // POST: Add a new exercise
 router.post('/add', async (req, res) => {
+  console.log(req.body)
   try {
-    const { username, description, duration, date } = req.body;
+    const { username, exerciseType, description, duration, date } = req.body;  // Added exerciseType here
 
     const newExercise = new Exercise({
       username,
+      exerciseType,
       description,
       duration: Number(duration),
       date: Date.parse(date),
@@ -77,9 +79,10 @@ router.put('/update/:id', async (req, res) => {
       }
   
       exercise.username = username;
+      exercise.exerciseType = exerciseType;
       exercise.description = description;
       exercise.duration = Number(duration);
-      exercise.date = new Date(date);  // Changed from Date.parse to new Date
+      exercise.date = new Date(date);
   
       await exercise.save();
       res.json({ message: 'Exercise updated!', exercise });

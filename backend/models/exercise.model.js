@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
-
 const { Schema } = mongoose;
 
 const exerciseSchema = new Schema(
   {
     username: { type: String, required: true },
-    description: { type: String, required: true },
+    exerciseType: {
+      type: String,
+      required: true,
+      enum: ['Running', 'Cycling', 'Swimming', 'Other']
+    },
+    description: { type: String, required: false },
     duration: { 
         type: Number, 
         required: true,
@@ -19,8 +23,6 @@ const exerciseSchema = new Schema(
   },
   { timestamps: true }
 );
-
-// Add validation or custom methods to the schema if needed
 
 const Exercise = mongoose.model('Exercise', exerciseSchema);
 
