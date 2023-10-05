@@ -22,26 +22,26 @@ A simple and interactive fitness tracking application built with the MERN stack 
 ### Clone the repository
 
 ```sh
-git clone <repository-url>
+git clone git@github.com:nadinedelia/mern-fitnessapp.git
 cd mern-fitnesstracker
 ```
 
 ### Install dependencies
 
 ```sh
-cd frontend
+cd backend
 npm install
-cd ../backend
+cd ../frontend
 npm install
 ```
 
 ### Start the development servers
 
 ```sh
-cd frontend
-npm start
-cd ../backend
+cd backend
 nodemon server
+cd ../frontend
+npm start
 ```
 
 ### Deployment
