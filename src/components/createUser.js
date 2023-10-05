@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import * as api from '../api';
 
 const CreateUser = () => {
   const [username, setUsername] = useState('');
@@ -7,10 +8,13 @@ const CreateUser = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     
-    // Here you would typically send the username to your API
-    console.log('User submitted:', username);
+    try {
+        await api.createUser({ username });
+        console.log('User added successfully:', username);
+    } catch (error) {
+        console.error('There was an error adding the user!', error);
+    }
 
-    // Clear the username input field
     setUsername('');
   };
 
