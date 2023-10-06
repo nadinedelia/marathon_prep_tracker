@@ -2,7 +2,7 @@
 
 A simple and interactive fitness tracking application built with the MERN stack (MongoDB, Express.js, React, Node.js). This application allows users to track their exercises and monitor their progress over time.
 
-![Application Screenshot](frontpage.png)  
+![Screenshot](frontpage.png)  
 
 ## Features
 
