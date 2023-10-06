@@ -28,7 +28,7 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           ECR_REPOSITORY: mern-fitnesstracker-fe
-          IMAGE_TAG: latest # change this to use git sha, if needed, with ${{ github.sha }}
+          IMAGE_TAG: ${{ github.sha }}
         run: |
           cd frontend
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f Dockerfile.fe .

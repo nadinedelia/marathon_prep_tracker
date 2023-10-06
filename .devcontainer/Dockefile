@@ -1,0 +1,13 @@
+
+FROM node:14
+
+WORKDIR /workspace
+
+# Add the "node" user to the "docker" group to allow interaction with the Docker daemon
+RUN usermod -aG docker node
+
+ENV DEBIAN_FRONTEND=dialog
+
+EXPOSE 3000
+
+CMD ["bash"]
