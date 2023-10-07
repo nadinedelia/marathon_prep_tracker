@@ -28,5 +28,13 @@ services:
     volumes:
       - mongodbdata:/data/db
 
+  # cypress:
+  #   build:
+  #     context: ./activity-tracking 
+  #     dockerfile: ./cypress/Dockerfile  
+  #   depends_on:
+  #     - frontend
+  #     - activity-tracking
+
 volumes:
   mongodbdata:
