@@ -24,8 +24,8 @@ The Activity Tracking functionality uses the MERN stack (MongoDB, Express.js, Re
 ### Clone the repository
 
 ```sh
-git clone git@github.com:nadinedelia/mern-fitnessapp.git
-cd mern-fitnesstracker
+git clone git@github.com:nadinedelia/mla-fitnessapp.git
+cd mla-fitnessapp
 ```
 
 ### Install dependencies
