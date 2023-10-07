@@ -1,24 +1,34 @@
-from flask import Flask, render_template, jsonify
+from dotenv import load_dotenv
+from flask import Flask, render_template, jsonify, request, redirect, url_for
+from pymongo import MongoClient
 from flask_pymongo import PyMongo
 from urllib.parse import quote_plus
+from bson import json_util
+import os
 
 app = Flask(__name__)
 
-username = quote_plus('root')
-password = quote_plus('cfgmla23')
+load_dotenv()
+title = "TODO"
+heading = "Flask Microservice"
+# mongo_uri = f"mongodb://{username}:{password}@mongodb:27017/test"
 
-mongo_uri = f"mongodb://{username}:{password}@mongodb:27017/test"
-app.config['MONGO_URI'] = mongo_uri
-
-mongo = PyMongo(app)
+client = MongoClient(os.getenv('MONGODB_URI'))
+db = client.test
 
 
 @app.route('/')
 def index():
-    exercises = mongo.db.exercises.find()
+    exercises = db.exercises.find()
     exercises_list = list(exercises)
 
-    return jsonify(exercises_list)
+    return json_util.dumps(exercises_list)
+
+
+@app.route("/list")
+def lists():
+    exercises = db.exercises.find()
+    return render_template('index.html', activities=exercises, t=title, h=heading)
 
 
 if __name__ == "__main__":
