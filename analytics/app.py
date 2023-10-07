@@ -1,25 +1,24 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from flask_pymongo import PyMongo
-from datetime import datetime, timedelta
+from urllib.parse import quote_plus
 
 app = Flask(__name__)
 
-app.config["MONGO_URI"] = "mongodb://root:cfgmla23@localhost:27017/exercises"
+username = quote_plus('root')
+password = quote_plus('cfgmla23')
+
+mongo_uri = f"mongodb://{username}:{password}@mongodb:27017/test"
+app.config['MONGO_URI'] = mongo_uri
 
 mongo = PyMongo(app)
 
 
 @app.route('/')
 def index():
-    one_week_ago = datetime.now() - timedelta(weeks=1)
+    exercises = mongo.db.exercises.find()
+    exercises_list = list(exercises)
 
-    exercises = mongo.db.exercises.find({"date": {"$gte": one_week_ago}})
-
-    weekly_stats = {
-        "total_duration": sum(exercise['duration'] for exercise in exercises),
-    }
-
-    return render_template('index.html', weekly_stats=weekly_stats)
+    return jsonify(exercises_list)
 
 
 if __name__ == "__main__":
