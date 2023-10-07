@@ -1,14 +1,3 @@
-# still under construction :)
-**NOT** the finished deliverable! 
-
-This is a starting point which will be iteratively updated after receiving feedback. 
-
-## Proposed Microservices add ons:
-- Data Visualization and Reporting
-- Goal Setting
-- Decoupled User Authentication
-
-
 # MERN Fitness Tracker
 
 A simple and interactive fitness tracking application built with the MERN stack (MongoDB, Express.js, React, Node.js). This application allows users to track their exercises and monitor their progress over time.
@@ -40,7 +29,7 @@ cd mern-fitnesstracker
 ### Install dependencies
 
 ```sh
-cd backend
+cd activity-tracking
 npm install
 cd ../frontend
 npm install
@@ -49,7 +38,7 @@ npm install
 ### Start the development servers
 
 ```sh
-cd backend
+cd activity-tracking
 nodemon server
 cd ../frontend
 npm start
@@ -62,4 +51,20 @@ The application is containerized using Docker and can be deployed on any platfor
 
 ```
 docker-compose up
+```
+
+### Connect to MongoDB
+
+```
+mongosh -u root -p cfgmla23 --authenticationDatabase admin --host localhost --port 27017
+```
+
+show registered activities:
+```
+db.exercises.find()
+```
+
+show registered users:
+```
+db.users.find()
 ```

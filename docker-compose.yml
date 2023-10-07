@@ -7,11 +7,26 @@ services:
     ports:
       - "80:80"
 
-  backend:
+  activity-tracking:
     build:
-      context: ./backend
+      context: ./activity-tracking
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=development
     ports:
       - "5300:5300"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=cfgmla23
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodbdata:/data/db
+
+volumes:
+  mongodbdata:

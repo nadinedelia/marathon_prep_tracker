@@ -36,9 +36,9 @@ jobs:
       - name: Build, tag, and push image to Amazon ECR (Backend)
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: mern-fitnesstracker-be
+          ECR_REPOSITORY: mern-fitnesstracker-activity
           IMAGE_TAG: latest # change this to use git sha, if needed, with ${{ github.sha }}
         run: |
-          cd backend
+          cd activity-tracking
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f Dockerfile .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG

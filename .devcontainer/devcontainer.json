@@ -9,13 +9,14 @@
 				"streetsidesoftware.code-spell-checker",
                 "dbaeumer.vscode-eslint", 
                 "ms-python.python", 
-                "vscjava.vscode-java-pack"
+                "vscjava.vscode-java-pack",
+                "mongodb.mongodb-vscode"
 			]
 		}
 	},
 	"portsAttributes": {
 		"3000": {
-			"label": "Hello Remote World",
+			"label": "Hello CFG",
 			"onAutoForward": "notify"
 		}
 	},
