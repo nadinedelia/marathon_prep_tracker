@@ -1,10 +1,12 @@
-# MERN Fitness Tracker
+# MLA Fitness App 
 
-A simple and interactive fitness tracking application built with the MERN stack (MongoDB, Express.js, React, Node.js). This application allows users to track their exercises and monitor their progress over time.
+A simple and interactive fitness tracking application built with multiple microservices and programming languages. This application allows users to track their exercises and monitor their progress over time.
+
+The Activity Tracking functionality uses the MERN stack (MongoDB, Express.js, React, Node.js) and the Analytics service uses Python/Flask (tbc).
 
 ![Screenshot](frontpage.png)  
 
-## Features
+## Current Features
 
 - User registration for personalized tracking
 - Log various types of exercises with descriptions, duration, and date
