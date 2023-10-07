@@ -1,3 +1,14 @@
+# still under construction :)
+**NOT** the finished deliverable! 
+
+This is a starting point which will be iteratively updated after receiving feedback. 
+
+## Proposed Microservices add ons:
+- Data Visualization and Reporting
+- Goal Setting
+- Decoupled User Authentication
+
+
 # MERN Fitness Tracker
 
 A simple and interactive fitness tracking application built with the MERN stack (MongoDB, Express.js, React, Node.js). This application allows users to track their exercises and monitor their progress over time.
