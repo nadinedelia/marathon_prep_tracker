@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import Footer from './components/footer';
 // import Login from './components/login'; 
 import NavbarComponent from './components/navbar';
+import Statistics from './components/statistics';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
@@ -31,9 +32,8 @@ function App() {
 
       <div className="componentContainer">
         {activeWindow === 'TrackExercise' && <TrackExercise />}
-        {/* Uncomment the lines below and add corresponding components as needed */}
-        {/* {activeWindow === 'Statistics' && <Statistics />} 
-        {activeWindow === 'GoalSetting' && <GoalSetting />} */}
+        {activeWindow === 'Statistics' && <Statistics />} 
+        {/* {activeWindow === 'GoalSetting' && <GoalSetting />} */}
       </div>
       <Footer />
     </div>

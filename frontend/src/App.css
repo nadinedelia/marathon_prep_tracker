@@ -103,6 +103,10 @@ input#duration {
   width: 100%;
 }
 
+.navbar {
+  background-color: #F54996;
+}
+
 .navbar-nav {
   margin: 0 auto !important;
 }
