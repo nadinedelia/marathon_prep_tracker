@@ -12,6 +12,7 @@ app = Flask(__name__)
 load_dotenv()
 title = "TODO"
 heading = "Flask Microservice"
+user = "testuser"
 
 client = MongoClient(os.getenv('MONGODB_URI'))
 db = client.test
@@ -27,7 +28,6 @@ def index():
 
 @app.route('/stats')
 def stats():
-    user = "testuser"
     # user = get_jwt_identity()
 
     pipeline = [
@@ -39,8 +39,7 @@ def stats():
     ]
 
     stats = list(db.exercises.aggregate(pipeline))
-    stats_json = json.dumps(json_util.loads(json_util.dumps(stats)), indent=4)
-    return stats_json
+    return render_template('stats.html', stats=stats, user=user)
 
 
 @app.route("/list")
