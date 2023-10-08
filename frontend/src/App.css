@@ -26,6 +26,11 @@ body {
   margin-bottom: 20px;
 }
 
+.appTitle {
+  margin-bottom: 20px; /* Adjust this value to give more space if needed */
+  text-align: center;
+}
+
 form {
   margin-bottom: 20px;
 }
@@ -96,4 +101,12 @@ input#duration {
   position: relative;
   bottom: 0;
   width: 100%;
+}
+
+.navbar-nav {
+  margin: 0 auto !important;
+}
+
+.custom-nav-link {
+  margin-right: 40px; /* Adjust this value as needed */
 }

@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+// import { Navbar, Nav, Container } from 'react-bootstrap'; // Not needed as you have NavbarComponent
 import CreateUser from './components/createUser';
 import TrackExercise from './components/trackExercise';
 import React, { useState, useEffect } from 'react';
@@ -22,23 +22,17 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar bg="dark" variant="dark" expand="lg">
-        <Container>
-          <Navbar.Brand href="#home">CFG Fitness App</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link onClick={() => handleNavigation('TrackExercise')}>Track New Exercise</Nav.Link>
-              <Nav.Link onClick={() => handleNavigation('Statistics')}>Statistics</Nav.Link>
-              <Nav.Link onClick={() => handleNavigation('GoalSetting')}>Goal Setting</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <div className="appTitle">
+        <h1>CFG Fitness App</h1>
+      </div>
+
+      {/* Your NavbarComponent goes here */}
+      <NavbarComponent onNavigate={handleNavigation} />
 
       <div className="componentContainer">
         {activeWindow === 'TrackExercise' && <TrackExercise />}
-        {/* {activeWindow === 'Statistics' && <Statistics />}
+        {/* Uncomment the lines below and add corresponding components as needed */}
+        {/* {activeWindow === 'Statistics' && <Statistics />} 
         {activeWindow === 'GoalSetting' && <GoalSetting />} */}
       </div>
       <Footer />
