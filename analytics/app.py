@@ -11,8 +11,8 @@ app = Flask(__name__)
 CORS(app)
 
 load_dotenv()
-title = "TODO"
-heading = "Flask Microservice"
+title = "Weekly Exercise Tracker Statistics"
+heading = "MLA Flask Microservice"
 user = "testuser"
 
 client = MongoClient(os.getenv('MONGODB_URI'))
