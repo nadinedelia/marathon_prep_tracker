@@ -4,7 +4,6 @@
 		"vscode": {
             "settings": {
                 "terminal.integrated.defaultProfile.linux": "bash",
-				"java.jdt.ls.java.home": "/usr/local/openjdk-11",
 				"python.pythonPath": "/usr/local/bin/python"
             },
 			"extensions": [
