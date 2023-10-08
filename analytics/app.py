@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from flask_pymongo import PyMongo
 from urllib.parse import quote_plus
 from bson import json_util
+import json
 import os
 
 app = Flask(__name__)
@@ -11,7 +12,6 @@ app = Flask(__name__)
 load_dotenv()
 title = "TODO"
 heading = "Flask Microservice"
-# mongo_uri = f"mongodb://{username}:{password}@mongodb:27017/test"
 
 client = MongoClient(os.getenv('MONGODB_URI'))
 db = client.test
@@ -23,6 +23,24 @@ def index():
     exercises_list = list(exercises)
 
     return json_util.dumps(exercises_list)
+
+
+@app.route('/stats')
+def stats():
+    user = "testuser"
+    # user = get_jwt_identity()
+
+    pipeline = [
+        {"$match": {"username": user}},
+        {"$group": {
+            "_id": "$exerciseType",
+            "duration": {"$sum": "$duration"}
+        }}
+    ]
+
+    stats = list(db.exercises.aggregate(pipeline))
+    stats_json = json.dumps(json_util.loads(json_util.dumps(stats)), indent=4)
+    return stats_json
 
 
 @app.route("/list")
