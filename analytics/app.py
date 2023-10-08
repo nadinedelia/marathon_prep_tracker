@@ -1,13 +1,14 @@
 from dotenv import load_dotenv
-from flask import Flask, render_template, jsonify, request, redirect, url_for
+from flask import Flask, render_template, jsonify
 from pymongo import MongoClient
 from flask_pymongo import PyMongo
+from flask_cors import CORS
 from urllib.parse import quote_plus
 from bson import json_util
-import json
 import os
 
 app = Flask(__name__)
+CORS(app)
 
 load_dotenv()
 title = "TODO"
@@ -28,7 +29,6 @@ def index():
 
 @app.route('/stats')
 def stats():
-    # user = get_jwt_identity()
 
     pipeline = [
         {"$match": {"username": user}},
@@ -39,7 +39,8 @@ def stats():
     ]
 
     stats = list(db.exercises.aggregate(pipeline))
-    return render_template('stats.html', stats=stats, user=user)
+    # return render_template('stats.html', stats=stats, user=user)
+    return jsonify(stats=stats)
 
 
 @app.route("/list")

@@ -5,22 +5,25 @@ const Statistics = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const url = 'http://localhost:5000/stats'; 
+    const url = 'http://127.0.0.1:5000/stats';
 
     axios.get(url)
       .then(response => {
-        setData(response.data);
+        setData(response.data.stats);
       })
       .catch(error => {
         console.error('There was an error fetching the data!', error);
       });
-  }, []); // Empty dependency array means this useEffect runs once when component mounts
+  }, []);
 
   return (
     <div>
-      {data.length > 0 ? (
+      {data && data.length > 0 ? (
         data.map((item, index) => (
-          <p key={index}>{JSON.stringify(item)}</p>
+          <div key={index}>
+            <p>Exercise Type: {item._id}</p>
+            <p>Total Duration: {item.duration}</p>
+          </div>
         ))
       ) : (
         <p>No data available</p>
