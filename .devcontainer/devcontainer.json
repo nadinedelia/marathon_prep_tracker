@@ -17,12 +17,6 @@
 			]
 		}
 	},
-	"portsAttributes": {
-		"3000": {
-			"label": "Hello CFG",
-			"onAutoForward": "notify"
-		}
-	},
 
 	"postCreateCommand": "npm install"
 
