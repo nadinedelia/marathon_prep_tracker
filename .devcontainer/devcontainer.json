@@ -1,6 +1,12 @@
 {
 	"name": "Node.js & Python & Java",
 	"build": { "dockerfile": "Dockerfile" },
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:1": {
+			"version": "latest",
+			"moby": true
+		}
+	},
 	"customizations": {
 		"vscode": {
             "settings": {
