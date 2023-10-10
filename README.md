@@ -13,10 +13,12 @@ The Activity Tracking functionality uses the MERN stack (MongoDB, Express.js, Re
 - Interactive UI with Material-UI components
 - Real-time data persistence with MongoDB
 
-## Prerequisites
+## Prerequisites for local development
 
 - Node.js
 - MongoDB
+- Java 8
+- Python & Flask
 - npm or yarn
 
 ## Local Development
@@ -69,4 +71,15 @@ db.exercises.find()
 show registered users:
 ```
 db.users.find()
+```
+
+### Running Flask application
+```
+flask run
+```
+
+### Running Java application
+```
+./gradlew clean build
+./gradlew bootRun
 ```
