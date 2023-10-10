@@ -1,5 +1,6 @@
 {
 	"name": "Node.js & Python & Java",
+	"build": { "dockerfile": "Dockerfile" },
 	"customizations": {
 		"vscode": {
             "settings": {
@@ -11,7 +12,8 @@
                 "dbaeumer.vscode-eslint", 
                 "ms-python.python", 
                 "vscjava.vscode-java-pack",
-                "mongodb.mongodb-vscode"
+                "mongodb.mongodb-vscode",
+				"ms-azuretools.vscode-docker"
 			]
 		}
 	},
