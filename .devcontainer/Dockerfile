@@ -1,8 +1,10 @@
 # Using Node.js base image
 FROM mcr.microsoft.com/devcontainers/javascript-node:0-18
 
-# Install OpenJDK 11
-RUN apt-get update && apt-get install -y openjdk-8-jdk && apt-get clean
+# Install OpenJDK 8
+RUN apt-get update && \
+    apt-get install -y openjdk-8-jdk && \
+    apt-get clean;
 
 # Install git, Python, pip, Gradle
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
