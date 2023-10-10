@@ -15,7 +15,7 @@ RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu jammy/mon
     && apt-get clean
 
 RUN npm install -g cors axios
-RUN nom install express
+RUN npm install express
 RUN pip3 install flask
 
 RUN rm -rf /var/lib/apt/lists/*
