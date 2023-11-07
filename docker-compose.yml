@@ -1,5 +1,14 @@
 version: '3.8'
 services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+
   # Microservice definitions remain the same, just updating the environment variables to point to separate databases
   activity-tracking:
     build:
