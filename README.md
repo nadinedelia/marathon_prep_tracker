@@ -178,9 +178,28 @@ Write your Prometheus query to fetch the metrics you want to visualise.
 Customize your panel with the visualisation options provided by Grafana.
 Save the panel and dashboard when you're done.
 
+Examples:
+
+Authservice:
+```
+jvm_memory_used_bytes{area="heap"}
+```
+
+Activity-Tracking:
+```
+rate(process_cpu_seconds_total[5m])
+```
+
+Analytics:
+```
+sum(rate(flask_http_request_total[5m])) by (method, status)
+```
+
 #### 5. Explore Metrics
 
 Use the Explore feature in Grafana to experiment with queries against your Prometheus data source and see the results in real time.
+
+![Screenshot](screenshots/grafana.png) 
 
 #### 6. Set Up Alerts (Optional)
 
