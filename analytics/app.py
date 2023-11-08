@@ -5,12 +5,14 @@ from flask_pymongo import PyMongo
 from flask_cors import CORS
 from urllib.parse import quote_plus
 from bson import json_util
+from prometheus_flask_exporter import PrometheusMetrics
 import traceback
 import os
 from datetime import datetime, timedelta
 # import config
 
 app = Flask(__name__)
+metrics = PrometheusMetrics(app)
 CORS(app, resources={r"/*": {"origins": "*"}},
      methods="GET,HEAD,POST,OPTIONS,PUT,PATCH,DELETE")
 
@@ -23,6 +25,7 @@ mongo_uri = os.getenv('MONGO_URI')
 client = MongoClient(mongo_uri)
 db = client.test
 
+metrics.info('app_info', 'Application info', version='1.0.3')
 
 @app.route('/')
 def index():
