@@ -1,9 +1,10 @@
 import axios from 'axios';
 
 function getUrl() {
-    if (process.env.CODESPACES === "true") {
-        return `https://${process.env.CODESPACE_NAME}-5300.app.github.dev`;
+    if (process.env.REACT_APP_API_BASE_URL) {
+        return process.env.REACT_APP_API_BASE_URL;
     } else {
+        // Fallback for local development outside Docker
         return `http://localhost:5300`;
     }
 }

@@ -6,7 +6,8 @@ const Statistics = ({ currentUser }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const url = `http://localhost:5050/stats/${currentUser}`;
+    const baseUrl = process.env.REACT_APP_API_BASE_URL;
+    const url = `${baseUrl}/analytics/stats/${currentUser}`;
 
     axios.get(url)
       .then(response => {
@@ -37,3 +38,4 @@ const Statistics = ({ currentUser }) => {
 };
 
 export default Statistics;
+

@@ -17,12 +17,15 @@ const Signup = ({ onSignup }) => {
     e.preventDefault();
     setError('');
 
+    const apiBaseUrl = process.env.REACT_APP_API_GATEWAY_URL || 'http://localhost:8080';
+    const signupUrl = `${apiBaseUrl}/auth/api/auth/signup`;
+
     try {
-        const response = await axios.post('http://localhost:8080/api/auth/signup', formData);
+        const response = await axios.post(signupUrl, formData);
 
         if (response.data === 'User registered successfully!') {
             console.log('User registered successfully');
-            onSignup(formData.username);  // Pass the username to the onSignup callback
+            onSignup(formData.username); 
         } else {
             setError(response.data);
         }

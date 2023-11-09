@@ -1,15 +1,30 @@
 version: '3.8'
 services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+    depends_on:
+      - frontend
+      - activity-tracking
+      - analytics
+      - authservice
+    networks:
+      - app-network
+
+  # Removed ports to only allow access through nginx
+
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    ports:
-      - "80:80"
+    environment:
+      - REACT_APP_API_BASE_URL=http://localhost
     networks:
       - app-network
 
-  # Microservice definitions remain the same, just updating the environment variables to point to separate databases
   activity-tracking:
     build:
       context: ./activity-tracking
@@ -17,10 +32,7 @@ services:
     environment:
       - NODE_ENV=development
       - MONGO_URI=mongodb://root:cfgmla23@mongodb/activity_tracking_db
-    ports:
-      - "5300:5300"
-    depends_on:
-      - mongodb
+      - REACT_APP_API_BASE_URL=http://localhost
     networks:
       - app-network
 
@@ -31,10 +43,6 @@ services:
     environment:
       - NODE_ENV=development
       - MONGO_URI=mongodb://root:cfgmla23@mongodb/analytics_db
-    ports:
-      - "5050:5050"
-    depends_on:
-      - mongodb
     networks:
       - app-network
 
@@ -45,21 +53,14 @@ services:
     environment:
       - SPRING_DATA_MONGODB_DATABASE=authservice_db
       - SPRING_DATA_MONGODB_URI=mongodb://root:cfgmla23@mongodb/authservice_db
-    ports:
-      - "8080:8080"
-    depends_on:
-      - mongodb
     networks:
       - app-network
 
-  # Single shared MongoDB instance
   mongodb:
     image: mongo:latest
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=cfgmla23
-    ports:
-      - "27017:27017"
     volumes:
       - mongodbdata:/data/db
     networks:
