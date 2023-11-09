@@ -11,7 +11,9 @@ const Journal = ({ currentUser }) => {
 
   const fetchExercises = async () => {
     try {
-      const url = `http://localhost:5050/api/stats/weekly/?user=${currentUser}&start=${moment(startDate).format('YYYY-MM-DD')}&end=${moment(endDate).format('YYYY-MM-DD')}`;
+      const apiBaseUrl = process.env.REACT_APP_API_GATEWAY_URL || 'http://localhost:5050';
+      const url = `${apiBaseUrl}/api/stats/weekly/?user=${currentUser}&start=${moment(startDate).format('YYYY-MM-DD')}&end=${moment(endDate).format('YYYY-MM-DD')}`;
+      
       const response = await axios.get(url);
       console.log('API Response:', response.data); 
       setExercises(response.data.stats);
@@ -55,3 +57,4 @@ const Journal = ({ currentUser }) => {
 };
 
 export default Journal;
+
