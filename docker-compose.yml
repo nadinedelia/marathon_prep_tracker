@@ -50,8 +50,9 @@ services:
       context: ./authservice
       dockerfile: Dockerfile
     environment:
-      - SPRING_DATA_MONGODB_DATABASE=authservice_db
       - SPRING_DATA_MONGODB_URI=mongodb://root:cfgmla23@mongodb/authservice_db
+    ports:
+      - "8080:8080"
     networks:
       - app-network
 
@@ -62,6 +63,7 @@ services:
       - MONGO_INITDB_ROOT_PASSWORD=cfgmla23
     volumes:
       - mongodbdata:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
     networks:
       - app-network
 

@@ -12,7 +12,7 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
 
     const apiBaseUrl = process.env.REACT_APP_API_GATEWAY_URL || 'http://localhost:8080';
-    const loginUrl = `${apiBaseUrl}/auth/api/auth/login`;
+    const loginUrl = `${apiBaseUrl}/auth/login`;
 
     try {
       const response = await axios.post(loginUrl, {
