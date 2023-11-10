@@ -32,6 +32,8 @@ services:
     environment:
       - NODE_ENV=development
       - MONGO_URI=mongodb://root:cfgmla23@mongodb/activity_tracking_db
+    ports:
+      - "5300:5300"
     networks:
       - app-network
 
@@ -42,6 +44,8 @@ services:
     environment:
       - NODE_ENV=development
       - MONGO_URI=mongodb://root:cfgmla23@mongodb/analytics_db
+    ports:
+      - "5050:5050"
     networks:
       - app-network
 
