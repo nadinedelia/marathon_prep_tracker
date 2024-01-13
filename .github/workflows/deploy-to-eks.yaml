@@ -20,25 +20,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        service:
-          - name: Frontend
-            dir: frontend
-            repo: mla-fitnessapp-fe
-            k8s_deployment_name: "frontend-deployment"
-          - name: Activity Tracking
-            dir: activity-tracking
-            repo: mla-fitnessapp-activity
-            k8s_deployment_name: "activity-tracking-deployment"
-          - name: AuthService
-            dir: authservice
-            repo: mla-fitnessapp-authservice
-            k8s_deployment_name: "authservice-deployment"
-          - name: Analytics
-            dir: analytics
-            repo: mla-fitnessapp-analytics
-            k8s_deployment_name: "analytics-deployment"
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -57,8 +38,15 @@ jobs:
         run: |
           aws eks update-kubeconfig --name ${{ github.event.inputs.eks_cluster_name }}
 
+      - name: Apply Kubernetes Deployment and Service
+        run: |
+          kubectl apply -f ./k8s/activity-tracking/deployment.yaml
+          kubectl apply -f ./k8s/activity-tracking/service.yaml
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
       - name: Set image version on Kubernetes deployment
         run: |
-          kubectl set image deployment/${{ matrix.service.k8s_deployment_name }} ${matrix.service.name}=${{ steps.login-ecr.outputs.registry }}/${{ matrix.service.repo }}:${{ github.event.inputs.version }} --record
+          kubectl set image deployment/activity-tracking-deployment Activity Tracking=${{ steps.login-ecr.outputs.registry }}/mla-fitnessapp-activity:${{ github.event.inputs.version }} --record
         env:
           KUBECONFIG: ${{ secrets.KUBECONFIG }}
