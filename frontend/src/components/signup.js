@@ -17,8 +17,9 @@ const Signup = ({ onSignup }) => {
     e.preventDefault();
     setError('');
 
-    const apiBaseUrl = process.env.REACT_APP_API_GATEWAY_URL || 'http://localhost:8080';
-    const signupUrl = `${apiBaseUrl}/auth/signup`;
+    // Pointing to Nginx server
+    const apiBaseUrl = 'http://localhost';
+    const loginUrl = `${apiBaseUrl}/auth/signup`;
 
     try {
         const response = await axios.post(signupUrl, formData);

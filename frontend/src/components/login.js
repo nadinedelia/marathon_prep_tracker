@@ -11,7 +11,8 @@ const Login = ({ onLogin }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const apiBaseUrl = process.env.REACT_APP_API_GATEWAY_URL || 'http://localhost:8080';
+    // Pointing to Nginx server
+    const apiBaseUrl = 'http://localhost';
     const loginUrl = `${apiBaseUrl}/auth/login`;
 
     try {
