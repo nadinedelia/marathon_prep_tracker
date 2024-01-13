@@ -19,7 +19,7 @@ const Signup = ({ onSignup }) => {
 
     // Pointing to Nginx server
     const apiBaseUrl = 'http://localhost';
-    const loginUrl = `${apiBaseUrl}/auth/signup`;
+    const signupUrl = `${apiBaseUrl}/auth/signup`;
 
     try {
         const response = await axios.post(signupUrl, formData);
