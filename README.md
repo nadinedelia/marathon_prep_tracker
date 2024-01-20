@@ -1,4 +1,4 @@
-# MLA Fitness App 
+# MLA Fitness App
 
 A simple and interactive fitness tracking application built with multiple microservices and programming languages. This application allows users to track their exercises and monitor their progress over time.
 
@@ -72,8 +72,12 @@ Done checking installations.
 if you're missing any version, please contact your course administrator. 
 
 
-### Building entire project with Docker
+### Building entire project with Docker (+ starting containers up)
+```sh
+docker-compose up --build
+```
 
+### Start existing containers (no rebuild of images)
 ```sh
 docker-compose up
 ```
@@ -120,9 +124,9 @@ npm install
 npm start
 ```
 
-#### spin up MongoDB:
+#### spin up MongoDB without docker-compose:
 ```
-docker run --name mymongo -d -p 27017:27017 -v mongodbdata:/data/db mongo:latest
+docker run --name mongodb -d -p 27017:27017 -v mongodbdata:/data/db mongo:latest
 ```
 
 ### Connect to MongoDB
@@ -204,10 +208,3 @@ Use the Explore feature in Grafana to experiment with queries against your Prome
 #### 6. Set Up Alerts (Optional)
 
 Grafana can also be used to set up alerts based on specific conditions within your dashboard panels. To set up alerts, edit a panel and go to the "Alert" tab to define alert rules.
-
-
-## Lab solutions
-
-- CI/CD lab: branch 'cicd-lab'
-- Architecture/Microservices: branch 'microservices'
-- Monitoring: branch 'monitoring'
