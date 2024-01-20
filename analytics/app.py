@@ -21,7 +21,7 @@ user = "testuser"
 mongo_uri = os.getenv('MONGO_URI')
 
 client = MongoClient(mongo_uri)
-db = client.test
+db = client.activity
 
 
 @app.route('/')

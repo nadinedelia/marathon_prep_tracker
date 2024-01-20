@@ -6,8 +6,8 @@ require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 5300;
-const uri = process.env.MONGODB_URI;
-const mongoUri = config.mongoUri;
+// const mongoUri = config.mongoUri;
+const mongoUri = "mongodb://root:cfgmla23@localhost:27017/activity?authSource=admin";
 
 // Middleware setup
 app.use(cors());
