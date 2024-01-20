@@ -12,8 +12,8 @@ const Login = ({ onLogin }) => {
     e.preventDefault();
 
     // Pointing to Nginx server
-    const apiBaseUrl = 'http://localhost';
-    const loginUrl = `${apiBaseUrl}/auth/login`;
+    const apiBaseUrl = process.env.REACT_APP_API_GATEWAY_URL || 'http://localhost:8080';
+    const loginUrl = `${apiBaseUrl}api/auth/login`;
 
     try {
       const response = await axios.post(loginUrl, {

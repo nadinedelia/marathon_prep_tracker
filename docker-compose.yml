@@ -6,22 +6,19 @@ services:
       - "80:80"
     volumes:
       - ./nginx:/etc/nginx/conf.d
+      - ./frontend/build:/usr/share/nginx/html
     depends_on:
       - frontend
       - activity-tracking
-      - analytics
       - authservice
-    networks:
-      - app-network
-
-  # Removed ports to only allow access through nginx
+      - analytics
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     environment:
-      - REACT_APP_API_GATEWAY_URL=http://nginx
+      - REACT_APP_API_GATEWAY_URL=http://localhost
     networks:
       - app-network
 
@@ -41,9 +38,6 @@ services:
     build:
       context: ./analytics
       dockerfile: Dockerfile
-    environment:
-      - NODE_ENV=development
-      - MONGO_URI=mongodb://root:cfgmla23@mongodb/analytics_db
     ports:
       - "5050:5050"
     networks:

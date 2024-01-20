@@ -12,30 +12,32 @@ const Signup = ({ onSignup }) => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-
   const handleSignup = async (e) => {
     e.preventDefault();
     setError('');
 
-    // Pointing to Nginx server
-    const apiBaseUrl = 'http://localhost';
-    const signupUrl = `${apiBaseUrl}/auth/signup`;
+    // Pointing to Nginx server if existant, else to port
+    const apiBaseUrl = process.env.REACT_APP_API_GATEWAY_URL || 'http://localhost:8080';
+    const signupUrl = `${apiBaseUrl}/api/auth/signup`;
 
     try {
-        const response = await axios.post(signupUrl, formData);
+      const response = await axios.post(signupUrl, formData);
 
-        if (response.data === 'User registered successfully!') {
-            console.log('User registered successfully');
-            onSignup(formData.username); 
-        } else {
-            setError(response.data);
-        }
+      if (response.data === 'User registered successfully!') {
+        console.log('User registered successfully');
+        onSignup(formData.username); 
+      } else {
+        // This assumes the server responds with a plain text error message
+        setError(response.data);
+      }
     } catch (error) {
-        console.error('Error during registration', error);
-        setError(error.response?.data || 'An error occurred during registration. Please try again.');
+      console.error('Error during registration', error);
+      
+      // Extracting error message from server response or using a default error message
+      const errorMessage = error.response?.data?.error || error.response?.data || 'An error occurred during registration. Please try again.';
+      setError(errorMessage);
     }
   };
-
 
   return (
     <div>
@@ -71,8 +73,8 @@ const Signup = ({ onSignup }) => {
         </Button>
       </Form>
       <p className="mt-3">
-    Already have an account? <Link to="/login">Login</Link>
-</p>
+        Already have an account? <Link to="/login">Login</Link>
+      </p>
     </div>
   );
 };
