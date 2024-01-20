@@ -15,9 +15,6 @@ CORS(app, resources={r"/*": {"origins": "*"}},
      methods="GET,HEAD,POST,OPTIONS,PUT,PATCH,DELETE")
 
 load_dotenv()
-title = "Weekly Exercise Tracker Statistics"
-heading = "MLA Flask Microservice"
-user = "testuser"
 mongo_uri = os.getenv('MONGO_URI')
 mongo_db = os.getenv('MONGO_DB')
 
