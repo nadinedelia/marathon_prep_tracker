@@ -16,7 +16,6 @@ const Signup = ({ onSignup }) => {
     e.preventDefault();
     setError('');
 
-    // Pointing to Nginx server if existant, else to port
     const apiBaseUrl = process.env.REACT_APP_API_GATEWAY_URL || 'http://localhost:8080';
     const signupUrl = `${apiBaseUrl}/api/auth/signup`;
 
