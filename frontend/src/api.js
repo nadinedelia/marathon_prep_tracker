@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 function getUrl() {
-    if (process.env.CODESPACES === "true") {
-        return `https://${process.env.CODESPACE_NAME}-5300.app.github.dev`;
+    if (process.env.REACT_APP_API_GATEWAY_URL) {
+        return process.env.REACT_APP_API_GATEWAY_URL;
     } else {
-        return `http://localhost:5300`;
+        return `http://localhost/activity/`;
     }
 }
 

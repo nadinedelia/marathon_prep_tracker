@@ -11,8 +11,12 @@ const Login = ({ onLogin }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    // Pointing to Nginx server
+    const apiBaseUrl = process.env.REACT_APP_API_GATEWAY_URL || 'http://localhost:8080';
+    const loginUrl = `${apiBaseUrl}api/auth/login`;
+
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/login', {
+      const response = await axios.post(loginUrl, {
         username,
         password,
       });
@@ -23,9 +27,9 @@ const Login = ({ onLogin }) => {
         setError('Invalid credentials');
       }
     } catch (err) {
-      setError('Failed to login');
+      setError(err.response?.data?.error || 'Failed to login');
     }
-};
+  };
 
   return (
     <div className="login-container">
@@ -59,8 +63,8 @@ const Login = ({ onLogin }) => {
       </Form>
 
       <p className="mt-3">
-    Don't have an account? <Link to="/signup">Sign up</Link>
-</p>
+        Don't have an account? <Link to="/signup">Sign up</Link>
+      </p>
     </div>
   );
 };
