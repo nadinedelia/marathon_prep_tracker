@@ -19,11 +19,7 @@ mongo_uri = os.getenv('MONGO_URI')
 mongo_db = os.getenv('MONGO_DB')
 
 client = MongoClient(mongo_uri)
-<<<<<<< HEAD
-db = client.activity
-=======
 db = client[mongo_db]
->>>>>>> origin/main
 
 
 @app.route('/')
