@@ -42,7 +42,6 @@ const TrackExercise = ({ currentUser }) => {
 
       setMessage('Activity logged successfully! Well done!');
       setTimeout(() => setMessage(''), 2000);
-
     } catch (error) {
       console.error('There was an error logging your activity!', error);
     }
@@ -87,7 +86,7 @@ const TrackExercise = ({ currentUser }) => {
             value={state.duration}
             onChange={(e) => setState({ ...state, duration: e.target.value })}
           />
-        </Form.Group>
+        </Form.Group >
         <Form.Group controlId="miles" style={{ marginBottom: '40px' }}>
           <Form.Label>Kilometers:</Form.Label>
           <Form.Control
@@ -109,9 +108,9 @@ const TrackExercise = ({ currentUser }) => {
         <Button variant="success" type="submit">
           Save activity
         </Button>
-      </Form>
+      </Form >
       {message && <p style={{ color: 'green' }}>{message}</p>}
-    </div>
+    </div >
   );
 };
 
