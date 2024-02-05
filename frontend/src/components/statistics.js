@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './statistics.css';
+import config from '../config';
 
 const Statistics = ({ currentUser }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const baseUrl = process.env.REACT_APP_API_BASE_URL;
-    const url = `${baseUrl}/analytics/stats/${currentUser}`;
+    const url = `${config.apiUrl}/stats/${currentUser}`;
 
     axios.get(url)
       .then(response => {

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Form, Alert } from 'react-bootstrap';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import config from '../config';
 
 const Signup = ({ onSignup }) => {
   const [formData, setFormData] = useState({ username: '', password: '' });
@@ -16,32 +17,22 @@ const Signup = ({ onSignup }) => {
     e.preventDefault();
     setError('');
 
-    const apiBaseUrl = process.env.REACT_APP_API_GATEWAY_URL || 'http://localhost:8080';
-    const signupUrl = `${apiBaseUrl}/api/auth/signup`;
-
     try {
-      const response = await axios.post(signupUrl, formData);
-
-<<<<<<< HEAD
-        if (response.data === 'User registered successfully!') {
-            console.log('User registered successfully');
-            onSignup(formData.username);
-        } else {
-            setError(response.data);
-        }
-=======
+      const response = await axios.post(`${config.apiUrl}/auth/signup`, formData);
       if (response.data === 'User registered successfully!') {
         console.log('User registered successfully');
-        onSignup(formData.username); 
+        onSignup(formData.username);
       } else {
-        // This assumes the server responds with a plain text error message
         setError(response.data);
       }
->>>>>>> s4-arch-pipeline-split
+      if (response.data === 'User registered successfully!') {
+        console.log('User registered successfully');
+        onSignup(formData.username);
+      } else {
+        setError(response.data);
+      }
     } catch (error) {
       console.error('Error during registration', error);
-      
-      // Extracting error message from server response or using a default error message
       const errorMessage = error.response?.data?.error || error.response?.data || 'An error occurred during registration. Please try again.';
       setError(errorMessage);
     }

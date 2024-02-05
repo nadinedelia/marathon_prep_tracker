@@ -1,14 +1,7 @@
 import axios from 'axios';
+import config from './config';
 
-function getUrl() {
-    if (process.env.REACT_APP_API_GATEWAY_URL) {
-        return process.env.REACT_APP_API_GATEWAY_URL;
-    } else {
-        return `http://localhost/activity/`;
-    }
-}
-
-const baseURL = getUrl();
+const baseURL = config.apiUrl
 
 const api = axios.create({
     baseURL

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Button } from 'react-bootstrap';
 import moment from 'moment';
 import './journal.css';
+import config from '../config';
 
 const Journal = ({ currentUser }) => {
   const [startDate, setStartDate] = useState(moment().startOf('week').toDate());
@@ -11,9 +12,7 @@ const Journal = ({ currentUser }) => {
 
   const fetchExercises = async () => {
     try {
-      const apiBaseUrl = process.env.REACT_APP_API_GATEWAY_URL || 'http://localhost:5050';
-      const url = `${apiBaseUrl}/api/stats/weekly/?user=${currentUser}&start=${moment(startDate).format('YYYY-MM-DD')}&end=${moment(endDate).format('YYYY-MM-DD')}`;
-      
+      const url = `${config.apiUrl}/stats/weekly/?user=${currentUser}&start=${moment(startDate).format('YYYY-MM-DD')}&end=${moment(endDate).format('YYYY-MM-DD')}`;
       const response = await axios.get(url);
       console.log('API Response:', response.data);
       if (response.data.stats && Array.isArray(response.data.stats)) {
@@ -49,7 +48,7 @@ const Journal = ({ currentUser }) => {
         <Button className="button-small" onClick={goToPreviousWeek}>&larr; Previous</Button>
         <span>{moment(startDate).format('YYYY-MM-DD')} to {moment(endDate).format('YYYY-MM-DD')}</span>
         <Button className="button-small" onClick={goToNextWeek}>Next &rarr;</Button>
-        </div>
+      </div>
       <ul>
         {exercises && exercises.length > 0 ? (
           exercises.map((exercise, index) => (
