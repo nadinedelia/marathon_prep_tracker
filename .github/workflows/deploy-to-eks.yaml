@@ -1,0 +1,52 @@
+## --------------------------------------------------------------------
+## only for review - would cost to actually deploy on EKS cluster!
+## --------------------------------------------------------------------
+
+name: Deploy to AWS EKS Cluster
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Docker image version to deploy"
+        required: true
+      environment:
+        description: "Target environment"
+        required: true
+      eks_cluster_name:
+        description: "EKS Cluster Name"
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Update kubeconfig for EKS
+        run: |
+          aws eks update-kubeconfig --name ${{ github.event.inputs.eks_cluster_name }}
+
+      - name: Apply Kubernetes Deployment and Service
+        run: |
+          kubectl apply -f ./k8s/activity-tracking/deployment.yaml
+          kubectl apply -f ./k8s/activity-tracking/service.yaml
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
+      - name: Set image version on Kubernetes deployment
+        run: |
+          kubectl set image deployment/activity-tracking-deployment Activity Tracking=${{ steps.login-ecr.outputs.registry }}/mla-fitnessapp-activity:${{ github.event.inputs.version }} --record
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}

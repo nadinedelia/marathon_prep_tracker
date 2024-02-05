@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: activity-tracking-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: activity-tracking
+  template:
+    metadata:
+      labels:
+        app: activity-tracking
+    spec:
+      containers:
+        - name: activity-tracking
+          image: activity-tracking:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5300
