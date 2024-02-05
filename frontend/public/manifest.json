@@ -1,6 +1,6 @@
 {
-  "short_name": "MLA Fitness App",
-  "name": "a CFG project",
+  "short_name": "Marathon Tracker",
+  "name": "a journal for runners",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",

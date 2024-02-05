@@ -10,18 +10,18 @@ import Footer from './components/footer';
 import Login from './components/login';
 import Signup from './components/signup';
 import Journal from './components/journal';
-import logo from './img/CFG_logo.png'; // Update the path to your logo file
+import logo from './img/logo.webp';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState(''); 
+  const [currentUser, setCurrentUser] = useState('');
 
   const handleLogout = () => {
-    setIsLoggedIn(false); 
-    setCurrentUser(''); 
+    setIsLoggedIn(false);
+    setCurrentUser('');
   };
 
-  const handleLogin = (username) => { 
+  const handleLogin = (username) => {
     setIsLoggedIn(true);
     setCurrentUser(username);
   };
@@ -30,8 +30,8 @@ function App() {
     <div className="App">
       <Router>
         <div className="appTitle">
-          <h1>MLA Fitness App</h1>
-          <img src={logo} alt="CFG Fitness App Logo" id="appLogo" />
+          <h1>Marathon Tracker</h1>
+          <img src={logo} alt="" id="appLogo" />
         </div>
 
         {isLoggedIn && <NavbarComponent onLogout={handleLogout} />}

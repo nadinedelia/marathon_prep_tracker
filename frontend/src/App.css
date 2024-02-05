@@ -1,21 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;700&display=swap');
-
-body, html, div, h1, h2, h3, p, button {
+body,
+html,
+div,
+h1,
+h2,
+h3,
+p,
+button {
   margin: 0;
   padding: 0;
   border: 0;
   font-size: 100%;
-  font-family: 'Barlow', sans-serif;
+  font-family: 'Poppins', sans-serif;
   vertical-align: baseline;
 }
 
 body {
   line-height: 1;
-  color: #333; 
+  color: #333;
 }
 
 #appLogo {
-  width: 150px;
+  width: 350px;
   height: auto;
 }
 
@@ -27,7 +32,7 @@ body {
 }
 
 .appTitle h1 {
-  color: #F54996ff;
+  color: rgb(73, 87, 245);
   font-size: 36px;
   margin: 40px 0 40px 0;
 }
@@ -43,8 +48,8 @@ form {
 
 
 button.navigationButton {
-  background-color: #F54996ff; 
-  color: white; 
+  background-color: rgb(73, 87, 245);
+  color: white;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
@@ -54,44 +59,44 @@ button.navigationButton {
 }
 
 button.navigationButton:hover {
-  background-color: #ff66b2;
+  background-color: rgb(73, 87, 245);
 }
 
 /* Style the success message */
 p.successMessage {
-  color: green;
+  color: rgb(0, 185, 135);
   margin-bottom: 20px;
 }
 
 .componentContainer {
   padding: 30px;
-  background-color: #f0f0f0; 
-  border-radius: 5px; 
+  background-color: #f0f0f0;
+  border-radius: 5px;
 }
 
 .btn-primary {
-  background-color: #F54996 !important;
-  border-color: #F54996ff !important;
+  background-color: #0c2c46;
+  border-color: #0c2c46;
 }
 
 .btn-primary:hover {
-  background-color: #f03087 !important; 
-  border-color: #F54996ff !important; 
+  background-color: #0c2c46;
+  border-color: #0c2c46;
 }
 
 .btn-success {
-  background-color: #F54996 !important;
-  border-color: #F54996ff !important;
+  background-color: #0c2c46;
+  border-color: #0c2c46;
 }
 
 .btn-success:hover {
-  background-color: #f03087 !important;  
-  border-color: #F54996ff !important; 
+  background-color: #19dcdc;
+  border-color: #19dcdc;
 }
 
 input#duration {
-  width: 20%; 
-  margin: auto; 
+  width: 20%;
+  margin: auto;
 }
 
 .form-margin {
@@ -110,7 +115,8 @@ input#duration {
 }
 
 .navbar {
-  background-color: #F54996;
+  background-color: #19dcdc;
+  ;
 }
 
 .navbar-nav {

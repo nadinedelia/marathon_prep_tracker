@@ -132,7 +132,7 @@ docker run --name mongodb -d -p 27017:27017 -v mongodbdata:/data/db mongo:latest
 ### Connect to MongoDB
 
 ```
-mongosh -u root -p cfgmla23 --authenticationDatabase admin --host localhost --port 27017
+mongosh -u root -p hiFriend24 --authenticationDatabase admin --host localhost --port 27017
 ```
 
 show registered activities:

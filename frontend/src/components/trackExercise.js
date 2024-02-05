@@ -10,6 +10,7 @@ import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
 import OtherIcon from '@material-ui/icons/HelpOutline';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import './activity.css';
 
 const TrackExercise = ({ currentUser }) => {
   const [state, setState] = useState({
@@ -18,7 +19,7 @@ const TrackExercise = ({ currentUser }) => {
     duration: 0,
     date: new Date(),
   });
-  const [message, setMessage] = useState(''); 
+  const [message, setMessage] = useState('');
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -41,7 +42,7 @@ const TrackExercise = ({ currentUser }) => {
 
       setMessage('Activity logged successfully! Well done!');
       setTimeout(() => setMessage(''), 2000);
-      
+
     } catch (error) {
       console.error('There was an error logging your activity!', error);
     }
@@ -50,11 +51,11 @@ const TrackExercise = ({ currentUser }) => {
   return (
     <div>
       <h3>Track exercise</h3>
-      <Form onSubmit={onSubmit} style={{ maxWidth: '400px', margin: 'auto' }}>
-        
+      <Form onSubmit={onSubmit} className="activityForm" style={{ maxWidth: '400px', margin: 'auto' }}>
+
         <Form.Group controlId="formDate" className="form-margin">
           <Form.Label>Date:</Form.Label>
-          <DatePicker 
+          <DatePicker
             selected={state.date}
             onChange={(date) => setState({ ...state, date })}
             dateFormat="yyyy/MM/dd"
@@ -64,35 +65,44 @@ const TrackExercise = ({ currentUser }) => {
           <IconButton color={state.exerciseType === 'Running' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Running' })}>
             <DirectionsRunIcon fontSize="large" />
           </IconButton>
-          <IconButton color={state.exerciseType === 'Cycling' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Cycling' })}>
-            <BikeIcon fontSize="large" />
-          </IconButton>
-          <IconButton color={state.exerciseType === 'Swimming' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Swimming' })}>
-            <PoolIcon fontSize="large" />
-          </IconButton>
           <IconButton color={state.exerciseType === 'Gym' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Gym' })}>
             <FitnessCenterIcon fontSize="large" />
-          </IconButton>
-          <IconButton color={state.exerciseType === 'Other' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Other' })}>
-            <OtherIcon fontSize="large" /> 
           </IconButton>
         </div>
         <Form.Group controlId="description" style={{ marginBottom: '20px' }}>
           <Form.Label>Description:</Form.Label>
-          <Form.Control 
+          <Form.Control
             as="textarea"
-            rows={3}
-            required 
-            value={state.description} 
+            rows={1}
+            required
+            value={state.description}
             onChange={(e) => setState({ ...state, description: e.target.value })}
           />
         </Form.Group>
         <Form.Group controlId="duration" style={{ marginBottom: '40px' }}>
           <Form.Label>Duration (in minutes):</Form.Label>
-          <Form.Control 
-            type="number" 
-            required 
-            value={state.duration} 
+          <Form.Control
+            type="number"
+            required
+            value={state.duration}
+            onChange={(e) => setState({ ...state, duration: e.target.value })}
+          />
+        </Form.Group>
+        <Form.Group controlId="miles" style={{ marginBottom: '40px' }}>
+          <Form.Label>Kilometers:</Form.Label>
+          <Form.Control
+            type="number"
+            required
+            value={state.duration}
+            onChange={(e) => setState({ ...state, duration: e.target.value })}
+          />
+        </Form.Group>
+        <Form.Group controlId="speed" style={{ marginBottom: '40px' }}>
+          <Form.Label>Speed (in min per km)</Form.Label>
+          <Form.Control
+            type="number"
+            required
+            value={state.duration}
             onChange={(e) => setState({ ...state, duration: e.target.value })}
           />
         </Form.Group>
@@ -100,7 +110,7 @@ const TrackExercise = ({ currentUser }) => {
           Save activity
         </Button>
       </Form>
-      {message && <p style={{color: 'green'}}>{message}</p>}
+      {message && <p style={{ color: 'green' }}>{message}</p>}
     </div>
   );
 };
