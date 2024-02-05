@@ -1,23 +1,16 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-<<<<<<< HEAD
-=======
 const promClient = require('prom-client');
-require('dotenv').config(); 
->>>>>>> s15-monitoring
+require('dotenv').config();
 
 const config = require('./config.json');
 
 const app = express();
 const port = process.env.PORT || 5300;
-<<<<<<< HEAD
 const baseUri = process.env.MONGO_URI || config.mongoUri;
 const database = process.env.MONGO_DB || config.mongoDb;
 const mongoUri = `${baseUri}/${database}`;
-=======
-const mongoUri = process.env.MONGODB_URI || config.mongoUri; // Fallback to config if env var is not set
->>>>>>> s15-monitoring
 
 app.use(cors());
 app.use(express.json());
@@ -33,18 +26,12 @@ connection.on('error', (error) => {
   console.error("MongoDB connection error:", error);
 });
 
-<<<<<<< HEAD
-=======
-// Create a Registry to register the metrics
+// prometheus
 const register = new promClient.Registry();
-
-// Enable the collection of default metrics
 promClient.collectDefaultMetrics({ register });
 
-// Add a route for the metrics endpoint
 app.get('/metrics', async (req, res) => {
   try {
-    // Retrieve metrics from the registry
     res.set('Content-Type', register.contentType);
     res.end(await register.metrics());
   } catch (err) {
@@ -52,7 +39,6 @@ app.get('/metrics', async (req, res) => {
   }
 });
 
->>>>>>> s15-monitoring
 const exercisesRouter = require('./routes/exercises');
 app.use('/exercises', exercisesRouter);
 

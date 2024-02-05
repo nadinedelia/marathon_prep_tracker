@@ -4,10 +4,7 @@ import { trackExercise } from '../api';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import IconButton from '@material-ui/core/IconButton';
 import DirectionsRunIcon from '@material-ui/icons/DirectionsRun';
-import BikeIcon from '@material-ui/icons/DirectionsBike';
-import PoolIcon from '@material-ui/icons/Pool';
 import FitnessCenterIcon from '@material-ui/icons/FitnessCenter';
-import OtherIcon from '@material-ui/icons/HelpOutline';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './activity.css';
@@ -61,10 +58,10 @@ const TrackExercise = ({ currentUser }) => {
           />
         </Form.Group>
         <div style={{ marginBottom: '20px' }}>
-          <IconButton color={state.exerciseType === 'Running' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Running' })}>
+          <IconButton color={state.exerciseType === 'Outdoor Run' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Running' })}>
             <DirectionsRunIcon fontSize="large" />
           </IconButton>
-          <IconButton color={state.exerciseType === 'Gym' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Gym' })}>
+          <IconButton color={state.exerciseType === 'Indoor Run' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Gym' })}>
             <FitnessCenterIcon fontSize="large" />
           </IconButton>
         </div>
@@ -78,7 +75,7 @@ const TrackExercise = ({ currentUser }) => {
             onChange={(e) => setState({ ...state, description: e.target.value })}
           />
         </Form.Group>
-        <Form.Group controlId="duration" style={{ marginBottom: '40px' }}>
+        <Form.Group controlId="duration" style={{ marginBottom: '10px' }}>
           <Form.Label>Duration (in minutes):</Form.Label>
           <Form.Control
             type="number"
@@ -87,22 +84,13 @@ const TrackExercise = ({ currentUser }) => {
             onChange={(e) => setState({ ...state, duration: e.target.value })}
           />
         </Form.Group >
-        <Form.Group controlId="miles" style={{ marginBottom: '40px' }}>
-          <Form.Label>Kilometers:</Form.Label>
+        <Form.Group controlId="distance" style={{ marginBottom: '10px' }}>
+          <Form.Label>Distance (in km)</Form.Label>
           <Form.Control
             type="number"
             required
-            value={state.duration}
-            onChange={(e) => setState({ ...state, duration: e.target.value })}
-          />
-        </Form.Group>
-        <Form.Group controlId="speed" style={{ marginBottom: '40px' }}>
-          <Form.Label>Speed (in min per km)</Form.Label>
-          <Form.Control
-            type="number"
-            required
-            value={state.duration}
-            onChange={(e) => setState({ ...state, duration: e.target.value })}
+            value={state.distance}
+            onChange={(e) => setState({ ...state, distance: e.target.value })}
           />
         </Form.Group>
         <Button variant="success" type="submit">

@@ -1,7 +1,3 @@
-## --------------------------------------------------------------------
-## only for review - would cost to actually deploy on EKS cluster!
-## --------------------------------------------------------------------
-
 name: Deploy to AWS EKS Cluster
 
 on:

@@ -4,11 +4,7 @@ A simple and interactive run workout tracking application built with multiple mi
 
 The Activity Tracking functionality uses the MERN stack (MongoDB, Express.js, React, Node.js), the Analytics service uses Python/Flask and the Authentication Microservice using Java.
 
-<<<<<<< HEAD
-![Screenshot](screenshots/)  
-=======
 ![Screenshot](screenshots/frontpage.png)
->>>>>>> s15-monitoring
 
 ### Current Features
 

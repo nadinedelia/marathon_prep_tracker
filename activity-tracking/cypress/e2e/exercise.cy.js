@@ -7,7 +7,7 @@ describe('Exercise API', () => {
       url: 'http://localhost:5300/exercises/add',
       body: {
         username: 'testuser',
-        exerciseType: 'Running',
+        exerciseType: 'Indoor run',
         description: 'Running 5km',
         duration: 30,
         date: new Date()
@@ -15,7 +15,7 @@ describe('Exercise API', () => {
     }).then((response) => {
       expect(response.status).to.eq(200);
       expect(response.body.message).to.eq('Exercise added!');
-      id = response.body._id; 
+      id = response.body._id;
     });
   });
 
