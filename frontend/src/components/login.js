@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Button, Form, Alert } from 'react-bootstrap';
+import { TextField, Button, Typography, Grid, Container, Paper, Alert, Link } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import config from '../config';
+import '../App.css';
 
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
@@ -11,13 +12,8 @@ const Login = ({ onLogin }) => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post(`${config.apiUrl}/auth/login`, {
-        username,
-        password,
-      });
-
+      const response = await axios.post(`${config.apiUrl}/auth/login`, { username, password });
       if (response.status === 200) {
         onLogin(username);
       } else {
@@ -29,40 +25,43 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <div className="login-container">
-
-      {error && <Alert variant="danger">{error}</Alert>}
-
-      <Form onSubmit={handleLogin}>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </Form.Group>
-
-        <Form.Group controlId="formPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-
-        <Button variant="primary" type="submit" style={{ marginTop: '20px' }}>
+    <Container maxWidth="sm" className="app-container">
+      <Typography variant="h5" sx={{ marginBottom: '20px' }}>Login</Typography>
+      {error && <Alert severity="error">{error}</Alert>}
+      <form onSubmit={handleLogin}>
+        <TextField
+          label="Username"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <TextField
+          label="Password"
+          type="password"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button
+          variant="contained"
+          type="submit"
+          className="gradient-button"
+          style={{ marginTop: '20px' }}
+        >
           Login
         </Button>
-      </Form>
-
-      <p className="mt-3">
-        Don't have an account? <Link to="/signup">Sign up</Link>
-      </p>
-    </div>
+      </form>
+      <Typography sx={{ marginTop: '20px', textAlign: 'center' }}>
+        Don't have an account?{' '}
+        <Link component={RouterLink} to="/signup">
+          Sign up
+        </Link>
+      </Typography>
+    </Container >
   );
 };
 

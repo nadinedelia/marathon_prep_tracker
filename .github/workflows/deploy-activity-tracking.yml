@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - "activity-tracking/**"
+      - "activity/**"
 
 jobs:
   build:
@@ -35,6 +35,6 @@ jobs:
           ECR_REPOSITORY: mla-fitnessapp-activity
           IMAGE_TAG: latest
         run: |
-          cd activity-tracking
+          cd activity
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f Dockerfile .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG

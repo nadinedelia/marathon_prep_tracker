@@ -1,22 +1,15 @@
 body,
-html,
-div,
-h1,
-h2,
-h3,
-p,
-button {
+html {
+  font-family: 'Poppins', sans-serif;
+  color: #333;
   margin: 0;
   padding: 0;
-  border: 0;
-  font-size: 100%;
-  font-family: 'Poppins', sans-serif;
-  vertical-align: baseline;
-}
-
-body {
-  line-height: 1;
-  color: #333;
+  background: linear-gradient(to bottom, #ffffff, #f3f3f3);
+  height: 100vh;
+  min-height: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 #appLogo {
@@ -31,79 +24,6 @@ body {
   padding: 20px;
 }
 
-.appTitle h1 {
-  color: rgb(73, 87, 245);
-  font-size: 36px;
-  margin: 40px 0 40px 0;
-}
-
-.appTitle {
-  margin: 40px 0 40px 0;
-  text-align: center;
-}
-
-form {
-  margin-bottom: 20px;
-}
-
-
-button.navigationButton {
-  background-color: rgb(73, 87, 245);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-bottom: 50px;
-}
-
-button.navigationButton:hover {
-  background-color: rgb(73, 87, 245);
-}
-
-/* Style the success message */
-p.successMessage {
-  color: rgb(0, 185, 135);
-  margin-bottom: 20px;
-}
-
-.componentContainer {
-  padding: 30px;
-  background-color: #f0f0f0;
-  border-radius: 5px;
-}
-
-.btn-primary {
-  background-color: #0c2c46;
-  border-color: #0c2c46;
-}
-
-.btn-primary:hover {
-  background-color: #0c2c46;
-  border-color: #0c2c46;
-}
-
-.btn-success {
-  background-color: #0c2c46;
-  border-color: #0c2c46;
-}
-
-.btn-success:hover {
-  background-color: #19dcdc;
-  border-color: #19dcdc;
-}
-
-input#duration {
-  width: 20%;
-  margin: auto;
-}
-
-.form-margin {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-
 .footer {
   text-align: center;
   padding: 10px;
@@ -114,19 +34,57 @@ input#duration {
   width: 100%;
 }
 
-.navbar {
-  background-color: #19dcdc;
-  ;
+.app-container {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.navbar-nav {
-  margin: 0 auto !important;
+.form-group {
+  margin-bottom: 15px;
 }
 
-.custom-nav-link {
-  margin-right: 40px;
+.button-primary {
+  background-color: #ff9800;
+  /* Example primary button color */
+  border-color: #ff9800;
 }
 
-.signup {
-  margin: 20px;
+.button-primary:hover {
+  background-color: #e68900;
+  border-color: #e68900;
+}
+
+.gradient-button {
+  background-image: linear-gradient(to right, #ffa726, #fd9619);
+  border: none;
+  color: white;
+}
+
+.gradient-button:hover {
+  background-image: linear-gradient(to right, #fd9619, #ffa726);
+}
+
+.link-text {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.auth-switch {
+  text-align: center;
+  margin-top: 20px;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(-100%);
+  }
 }

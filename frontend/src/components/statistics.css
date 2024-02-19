@@ -1,12 +1,3 @@
-.stats-container {
-    max-width: 600px;
-    margin: auto;
-    background-color: #f5f5f5;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
 .exercise-data {
     margin-bottom: 10px;
     padding-top: 20px;
@@ -15,28 +6,47 @@
 .stats-content {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    /* Ensures even spacing between items */
 }
 
 .exercise-container {
     margin-bottom: 20px;
+    padding: 10px;
+    background-color: #ffffff;
+    /* Optional: Adds contrast against the stats-container */
+    border-radius: 5px;
+    /* Rounded corners for each exercise container */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    /* Optional: Adds depth */
     width: 100%;
 }
 
 .exercise-stats {
-    display: inline-block;
+    display: flex;
+    align-items: center;
     margin-right: 15px;
 }
 
-.exercise-type {
-    display: inline;
-    margin: 0;
-}
-
+.exercise-type,
 .total-duration {
-    display: inline;
-    margin-left: 5px;
+    margin: 0 5px;
+    /* Provides consistent spacing around these elements */
 }
 
 .no-data-message {
     color: #888;
+    text-align: center;
+    /* Centers the message within the container */
+}
+
+/* Adding gradient button styles if you have buttons in your statistics component */
+.button-gradient {
+    background-image: linear-gradient(to right, #ffa726, #fb8c00);
+    border: none;
+    color: white;
+}
+
+.button-gradient:hover {
+    background-image: linear-gradient(to right, #fb8c00, #f57c00);
 }

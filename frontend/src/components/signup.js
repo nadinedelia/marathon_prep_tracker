@@ -1,80 +1,71 @@
 import React, { useState } from 'react';
-import { Button, Form, Alert } from 'react-bootstrap';
+import { TextField, Button, Typography, Container, Paper, Alert, Link } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
 import config from '../config';
+import '../App.css';
 
 const Signup = ({ onSignup }) => {
   const [formData, setFormData] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
-  };
-
   const handleSignup = async (e) => {
     e.preventDefault();
     setError('');
-
     try {
       const response = await axios.post(`${config.apiUrl}/auth/signup`, formData);
       if (response.data === 'User registered successfully!') {
-        console.log('User registered successfully');
-        onSignup(formData.username);
-      } else {
-        setError(response.data);
-      }
-      if (response.data === 'User registered successfully!') {
-        console.log('User registered successfully');
         onSignup(formData.username);
       } else {
         setError(response.data);
       }
     } catch (error) {
-      console.error('Error during registration', error);
-      const errorMessage = error.response?.data?.error || error.response?.data || 'An error occurred during registration. Please try again.';
-      setError(errorMessage);
+      setError(error.response?.data?.error || 'An error occurred during registration. Please try again.');
     }
   };
 
   return (
-    <div>
-      {error && <Alert variant="danger">{error}</Alert>}
-
-      <Form onSubmit={handleSignup}>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter username"
-            name="username"
-            value={formData.username}
-            onChange={handleInputChange}
-            required
-          />
-        </Form.Group>
-
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
-            required
-          />
-        </Form.Group>
-
-        <Button variant="primary" type="submit" style={{ marginTop: '20px' }}>
-          Signup
+    <Container maxWidth="sm" className="app-container">
+      {error && <Alert severity="error">{error}</Alert>}
+      <Typography variant="h5" sx={{ marginBottom: '20px' }}>Sign Up</Typography>
+      <form onSubmit={handleSignup}>
+        <TextField
+          label="Username"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          name="username"
+          value={formData.username}
+          onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+          required
+        />
+        <TextField
+          label="Password"
+          type="password"
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          name="password"
+          value={formData.password}
+          onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+          required
+        />
+        <Button
+          variant="contained"
+          type="submit"
+          className="gradient-button"
+          style={{ marginTop: '20px' }}
+        >
+          Sign up
         </Button>
-      </Form>
-      <p className="mt-3">
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
-    </div>
+      </form>
+      <Typography sx={{ marginTop: '20px', textAlign: 'center' }}>
+        Already have an account?{' '}
+        <Link component={RouterLink} to="/login">
+          Login
+        </Link>
+      </Typography>
+    </Container>
   );
 };
 

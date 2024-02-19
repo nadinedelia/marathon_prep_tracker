@@ -44,17 +44,17 @@ jobs:
           ECR_REPOSITORY: mla-fitnessapp-activity
           IMAGE_TAG: latest
         run: |
-          cd activity-tracking
+          cd activity
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f Dockerfile .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-      - name: Build, tag, and push image to Amazon ECR (AuthService)
+      - name: Build, tag, and push image to Amazon ECR (auth)
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: mla-fitnessapp-authservice
+          ECR_REPOSITORY: mla-fitnessapp-auth
           IMAGE_TAG: latest
         run: |
-          cd authservice
+          cd auth
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f Dockerfile .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 

@@ -10,52 +10,6 @@
     margin-bottom: 10px;
 }
 
-.activityForm .form-group {
-    margin-bottom: 20px;
-}
-
-.activityForm .form-control,
-.activityForm .react-datepicker-wrapper {
-    width: 100%;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.activityForm .react-datepicker-wrapper {
-    display: block;
-}
-
-.activityForm .form-control:focus {
-    border-color: rgb(73, 87, 245);
-    box-shadow: none;
-}
-
-.activityForm .half-width {
-    display: flex;
-    gap: 10px;
-}
-
-.activityForm .half-width .form-control {
-    width: calc(30% - 5px);
-}
-
-.activityForm .btn-save-activity {
-    width: 100%;
-    padding: 10px;
-    font-size: 18px;
-    border-radius: 5px;
-    border: none;
-    background-color: rgb(73, 87, 245);
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.activityForm .btn-save-activity:hover {
-    background-color: darken(rgb(73, 87, 245), 10%);
-}
-
 .activityForm .form-message {
     text-align: center;
     color: rgb(0, 185, 135);
@@ -65,14 +19,5 @@
 @media (max-width: 480px) {
     .activityForm {
         padding: 15px;
-    }
-
-    .activityForm .form-control,
-    .activityForm .react-datepicker-wrapper {
-        font-size: 14px;
-    }
-
-    .activityForm .btn-save-activity {
-        font-size: 16px;
     }
 }

@@ -1,0 +1,11 @@
+.custom-navbar {
+    background: linear-gradient(to right, #ffa726, #fb8c00);
+}
+
+.custom-nav-link {
+    margin-right: 40px;
+}
+
+.custom-nav-link:last-child {
+    margin-right: 0;
+}

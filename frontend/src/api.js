@@ -7,4 +7,4 @@ const api = axios.create({
     baseURL
 });
 
-export const trackExercise = payload => api.post(`/exercises/add`, payload);
+export const createActivity = payload => api.post(`/exercises/add`, payload);

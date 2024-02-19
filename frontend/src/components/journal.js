@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Container, Paper, Typography, Button, List, ListItem, ListItemText, Grid } from '@mui/material';
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
 import moment from 'moment';
 import './journal.css';
 import config from '../config';
@@ -41,9 +41,10 @@ const Journal = ({ currentUser }) => {
   };
 
   return (
-    <div className="journal-container">
-      <h4>Weekly Exercise Journal</h4>
-      <br></br>
+    <Container maxWidth="sm" className="app-container">
+      <Typography variant="h5" gutterBottom>
+        Weekly Exercise Journal
+      </Typography>
       <div className="date-range">
         <Button className="button-small" onClick={goToPreviousWeek}>&larr; Previous</Button>
         <span>{moment(startDate).format('YYYY-MM-DD')} to {moment(endDate).format('YYYY-MM-DD')}</span>
@@ -60,7 +61,7 @@ const Journal = ({ currentUser }) => {
           <li>No exercises found for this period.</li>
         )}
       </ul>
-    </div>
+    </Container>
   );
 };
 

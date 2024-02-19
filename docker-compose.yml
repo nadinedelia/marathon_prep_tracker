@@ -8,9 +8,9 @@ services:
       - ./nginx:/etc/nginx/conf.d
     depends_on:
       - frontend
-      - activity-tracking
+      - activity
       - analytics
-      - authservice
+      - auth
     networks:
       - app-network
 
@@ -23,12 +23,14 @@ services:
     networks:
       - app-network
 
-  activity-tracking:
+  activity:
     build:
-      context: ./activity-tracking
+      context: ./activity
       dockerfile: Dockerfile
     environment:
       - NODE_ENV=development
+      - MONGO_DB=activity
+      - MONGO_URI=mongodb://root:cfgmla23@mongodb:27017
     depends_on:
       - mongodb
     networks:
@@ -47,12 +49,12 @@ services:
     networks:
       - app-network
 
-  authservice:
+  auth:
     build:
-      context: ./authservice
+      context: ./auth
       dockerfile: Dockerfile
     environment:
-      - SPRING_DATA_MONGODB_DATABASE=authservice
+      - SPRING_DATA_MONGODB_DATABASE=auth
       - SPRING_DATA_MONGODB_URI=mongodb://root:cfgmla23@mongodb:27017
     depends_on:
       - mongodb

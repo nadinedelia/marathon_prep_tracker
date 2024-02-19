@@ -98,7 +98,7 @@ docker-compose down [servicename]
 #### Running Node.js Activity Tracker
 
 ```sh
-cd activity-tracking
+cd activity
 npm install
 nodemon server
 ```
@@ -111,7 +111,7 @@ flask run -h localhost -p 5050
 
 #### Running Java application
 ```sh
-cd authservice
+cd auth
 ./gradlew clean build
 ./gradlew bootRun
 ```
@@ -184,12 +184,12 @@ Save the panel and dashboard when you're done.
 
 Examples:
 
-Authservice:
+auth:
 ```
 jvm_memory_used_bytes{area="heap"}
 ```
 
-Activity-Tracking:
+activity:
 ```
 rate(process_cpu_seconds_total[5m])
 ```

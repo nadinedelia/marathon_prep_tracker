@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: activity-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: activity
+  template:
+    metadata:
+      labels:
+        app: activity
+    spec:
+      containers:
+        - name: activity
+          image: activity:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5300
