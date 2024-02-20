@@ -33,6 +33,7 @@ const Statistics = ({ currentUser }) => {
               <ListItemText
                 primary={item.exerciseType}
                 secondary={`Total Duration: ${item.totalDuration} min`}
+                tertiary={`Total Distance: ${item.totalDistance} min`}
               />
             </ListItem>
           ))}
