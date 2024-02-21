@@ -115,18 +115,50 @@ def weekly_user_stats():
             }
         },
         {
+            "$project": {
+                "date": 1,
+                "exerciseType": 1,
+                "duration": 1,
+                "dayOfWeek": { "$dayOfWeek": "$date" },
+                "formattedDate": { "$dateToString": { "format": "%Y-%m-%d", "date": "$date" } }
+            }
+        },
+        {
             "$group": {
                 "_id": {
+                    "formattedDate": "$formattedDate",
+                    "dayOfWeek": "$dayOfWeek",
                     "exerciseType": "$exerciseType"
                 },
                 "totalDuration": {"$sum": "$duration"}
             }
         },
         {
+            "$group": {
+                "_id": "$_id.formattedDate",
+                "dayOfWeek": {"$first": "$_id.dayOfWeek"},
+                "exercises": {
+                    "$push": {
+                        "exerciseType": "$_id.exerciseType",
+                        "totalDuration": "$totalDuration"
+                    }
+                }
+            }
+        },
+        {
+            "$addFields": {
+                "date": { "$toDate": "$_id" }
+            }
+        },
+        {
+            "$sort": { "date": 1 }
+        },
+        {
             "$project": {
-                "exerciseType": "$_id.exerciseType",
-                "totalDuration": 1,
-                "_id": 0
+                "_id": 0,
+                "date": 1,
+                "dayOfWeek": 1,
+                "exercises": 1
             }
         }
     ]

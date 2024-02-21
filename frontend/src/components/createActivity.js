@@ -62,6 +62,7 @@ const CreateActivity = ({ currentUser }) => {
         </LocalizationProvider> */}
         <br></br>
         <br></br>
+        <Typography variant="p" style={{ marginBottom: '10px' }}>Outdoor or Indoor Run?</Typography>
         <Grid container spacing={2} justifyContent="center" style={{ marginBottom: '20px' }}>
           <Grid item>
             <IconButton color={state.exerciseType === 'Outdoor Run' ? "primary" : "default"} onClick={() => setState({ ...state, exerciseType: 'Outdoor Run' })}>

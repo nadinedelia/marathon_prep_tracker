@@ -24,7 +24,7 @@ const Statistics = ({ currentUser }) => {
   return (
     <Container maxWidth="sm" className="app-container">
       <Typography variant="h5" gutterBottom>
-        Overall Effort
+        Total Effort since starting the programme
       </Typography>
       {currentUserData ? (
         <List>
