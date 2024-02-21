@@ -6,6 +6,8 @@ COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 6000
+EXPOSE 5050
 
-CMD ["gunicorn", "-b", "0.0.0.0:5050", "app:app"]
+ENV FLASK_APP=app:create_app()
+
+CMD ["gunicorn", "--bind", "0.0.0.0:5050", "app:create_app()"]

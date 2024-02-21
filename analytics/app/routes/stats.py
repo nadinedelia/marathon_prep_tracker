@@ -1,13 +1,18 @@
-from flask import Blueprint, jsonify, request
-from app.extensions import mongo
+from flask import Blueprint, jsonify, request, current_app
 from bson import json_util
 from datetime import datetime, timedelta
 import logging
+import traceback
 
 stats_bp = Blueprint('stats', __name__, url_prefix='/stats')
 
+
+def get_db():
+    return current_app.config["mongo_db"]
+
 @stats_bp.route('/')
 def stats():
+    db = get_db()
     pipeline = [
         {
             "$group": {
@@ -16,7 +21,7 @@ def stats():
                     "exerciseType": "$exerciseType"
                 },
                 "totalDuration": {"$sum": "$duration"},
-                "totalDistance": {"$sum": "$distance"}  # Add this line
+                "totalDistance": {"$sum": "$distance"}
             }
         },
         {
@@ -26,7 +31,7 @@ def stats():
                     "$push": {
                         "exerciseType": "$_id.exerciseType",
                         "totalDuration": "$totalDuration",
-                        "totalDistance": "$totalDistance"  # And this line
+                        "totalDistance": "$totalDistance"
                     }
                 }
             }
@@ -39,12 +44,12 @@ def stats():
             }
         }
     ]
-
-    stats = list(mongo.db.exercises.aggregate(pipeline))
+    stats = list(db.exercises.aggregate(pipeline))
     return jsonify(stats=stats)
 
 @stats_bp.route('/<username>', methods=['GET'])
 def user_stats(username):
+    db = get_db()
     pipeline = [
         {
             "$match": {"username": username}
@@ -56,7 +61,7 @@ def user_stats(username):
                     "exerciseType": "$exerciseType"
                 },
                 "totalDuration": {"$sum": "$duration"},
-                "totalDistance": {"$sum": "$distance"}  # Add this line
+                "totalDistance": {"$sum": "$distance"}
             }
         },
         {
@@ -66,7 +71,7 @@ def user_stats(username):
                     "$push": {
                         "exerciseType": "$_id.exerciseType",
                         "totalDuration": "$totalDuration",
-                        "totalDistance": "$totalDistance"  # And this line
+                        "totalDistance": "$totalDistance"
                     }
                 }
             }
@@ -79,12 +84,12 @@ def user_stats(username):
             }
         }
     ]
-    stats = list(mongo.db.exercises.aggregate(pipeline))
+    stats = list(db.exercises.aggregate(pipeline))
     return jsonify(stats=stats)
 
-
-@stats_bp.route('/stats/weekly/', methods=['GET'])
+@stats_bp.route('/weekly/', methods=['GET'])
 def weekly_user_stats():
+    db = get_db()
     username = request.args.get('user')
     start_date_str = request.args.get('start')
     end_date_str = request.args.get('end')
@@ -92,7 +97,7 @@ def weekly_user_stats():
     date_format = "%Y-%m-%d"
     try:
         start_date = datetime.strptime(start_date_str, date_format)
-        end_date = datetime.strptime(end_date_str, date_format) + timedelta(days=1)  # Include the whole end day
+        end_date = datetime.strptime(end_date_str, date_format) + timedelta(days=1)
 
         logging.info(f"Fetching weekly stats for user: {username} from {start_date} to {end_date}")
     except Exception as e:
@@ -130,6 +135,6 @@ def weekly_user_stats():
         stats = list(db.exercises.aggregate(pipeline))
         return jsonify(stats=stats)
     except Exception as e:
-        current_app.logger.error(f"An error occurred while querying MongoDB: {e}")
+        logging.error(f"An error occurred while querying MongoDB: {e}")
         traceback.print_exc()
         return jsonify(error="An internal error occurred"), 500
