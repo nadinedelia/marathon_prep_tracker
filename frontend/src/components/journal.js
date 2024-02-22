@@ -51,23 +51,23 @@ const Journal = ({ currentUser }) => {
         <Button className="button-small" onClick={goToNextWeek}>Next &rarr;</Button>
       </div>
         <ul>
-        {exercises && exercises.length > 0 ? (
-          exercises.map((dayData, index) => (
-            <li key={index} className="exercise-journal-day">
-              <strong>{moment(dayData.date).format('dddd, YYYY-MM-DD')}</strong>
-              <ul>
-                {dayData.exercises.map((exercise, exIndex) => (
-                  <li key={exIndex} className="exercise-journal-data">
-                    {exercise.exerciseType} - {exercise.totalDuration} minutes
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))
-        ) : (
-          <li>No exercises found for this period.</li>
-        )}
-      </ul>
+      {exercises && exercises.length > 0 ? (
+        exercises.map((dayData, index) => (
+          <li key={index} className="exercise-journal-day">
+            <strong>{moment(dayData.date).format('dddd, YYYY-MM-DD')}</strong>
+            <ul>
+              {dayData.exercises.map((exercise, exIndex) => (
+                <li key={exIndex} className="exercise-journal-data">
+                  {exercise.exerciseType} - {exercise.totalDuration} minutes
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))
+      ) : (
+        <li>No exercises found for this period.</li>
+      )}
+    </ul>
     </Container>
   );
 };
