@@ -184,12 +184,12 @@ Save the panel and dashboard when you're done.
 
 Examples:
 
-auth:
+Auth:
 ```
 jvm_memory_used_bytes{area="heap"}
 ```
 
-activity:
+Activity:
 ```
 rate(process_cpu_seconds_total[5m])
 ```

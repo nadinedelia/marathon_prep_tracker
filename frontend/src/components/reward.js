@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { TextField, Button, Typography, Grid, Container, Paper, IconButton } from '@mui/material';
+import { TextField, Button, Typography, Grid, IconButton } from '@mui/material';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
-import dayjs from 'dayjs'; 
-import { createActivity } from '../api'; 
+import dayjs from 'dayjs';
+import { createActivity } from '../api';
 import './activity.css';
 
 const CreateActivity = ({ currentUser }) => {
@@ -13,13 +13,18 @@ const CreateActivity = ({ currentUser }) => {
     exerciseType: '',
     description: '',
     duration: 0,
-    date: dayjs(), 
+    date: dayjs(),
     distance: 0,
   });
   const [message, setMessage] = useState('');
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    if (!state.exerciseType) {
+      setMessage("You need to specify if this was an Indoor or Outdoor run!");
+      setTimeout(() => setMessage(''), 5000);
+    }
 
     const dataToSubmit = {
       username: currentUser,
@@ -28,7 +33,7 @@ const CreateActivity = ({ currentUser }) => {
     };
 
     try {
-      const response = await createActivity(dataToSubmit);
+      await createActivity(dataToSubmit);
       setState({
         exerciseType: '',
         description: '',
@@ -40,6 +45,8 @@ const CreateActivity = ({ currentUser }) => {
       setTimeout(() => setMessage(''), 2000);
     } catch (error) {
       console.error('There was an error logging your activity!', error);
+      setMessage('Failed to log activity. Please try again.');
+      setTimeout(() => setMessage(''), 5000);
     }
   };
 
@@ -55,8 +62,6 @@ const CreateActivity = ({ currentUser }) => {
             renderInput={(params) => <TextField {...params} fullWidth margin="normal" />}
           />
         </LocalizationProvider>
-        <br></br>
-        <br></br>
         <Typography variant="p" style={{ marginBottom: '10px' }}>Outdoor or Indoor Run?</Typography>
         <Grid container spacing={2} justifyContent="center" style={{ marginBottom: '20px' }}>
           <Grid item>
@@ -108,7 +113,7 @@ const CreateActivity = ({ currentUser }) => {
           Save Activity
         </Button>
       </form>
-      {message && <Typography color="success.main" style={{ marginTop: '20px' }}>{message}</Typography>}
+      {message && <Typography color="error" style={{ marginTop: '20px' }}>{message}</Typography>}
     </div>
   );
 };
