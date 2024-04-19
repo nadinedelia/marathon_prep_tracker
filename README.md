@@ -8,11 +8,15 @@ The Activity Tracking functionality uses the MERN stack (MongoDB, Express.js, Re
 
 ### Current Features
 
-- User registration for personalized tracking
+- User registration for personalised tracking
 - Log various types of exercises with descriptions, duration, and date
 - See weekly and overall statistics
 - Interactive UI with Material-UI components
 - Real-time data persistence with MongoDB
+
+### TBC
+
+- CorDapp for Challenges feature
 
 ### Prerequisites
 
@@ -208,3 +212,8 @@ Use the Explore feature in Grafana to experiment with queries against your Prome
 #### 6. Set Up Alerts (Optional)
 
 Grafana can also be used to set up alerts based on specific conditions within your dashboard panels. To set up alerts, edit a panel and go to the "Alert" tab to define alert rules.
+
+
+#### --- TO DO ---
+
+Tests, tests, tests... adding Cordapp for challenges

@@ -11,7 +11,7 @@ In this app you can:
 3. Settle(pau back) the IOUState `IOUSettleFlow`
 4. Lender transfer the debt to a different person `IOUTransferFlow`
 
-### Setting up
+### Setting ups
 
 1. We will begin our test deployment with clicking the `startCorda`. This task will load up the combined Corda workers in docker.
    A successful deployment will allow you to open the REST APIs at: https://localhost:8888/api/v1/swagger#. You can test out some

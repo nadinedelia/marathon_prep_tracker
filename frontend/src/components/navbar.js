@@ -18,6 +18,9 @@ const NavbarComponent = ({ onLogout }) => {
       case 'Journal':
         navigate('/journal');
         break;
+      case 'Challenge':
+        navigate('/challenge');
+        break;
       default:
         console.error('Invalid route:', route);
     }
@@ -31,6 +34,7 @@ const NavbarComponent = ({ onLogout }) => {
           <Nav.Link className="custom-nav-link" onClick={() => onNavigate('Activity')}>Add Activity</Nav.Link>
           <Nav.Link className="custom-nav-link" onClick={() => onNavigate('Statistics')}>Statistics</Nav.Link>
           <Nav.Link className="custom-nav-link" onClick={() => onNavigate('Journal')}>Journal</Nav.Link>
+          <Nav.Link className="custom-nav-link" onClick={() => onNavigate('Challenge')}>Challenge</Nav.Link>
           <Nav.Link className="custom-nav-link" onClick={onLogout}>Logout</Nav.Link>
         </Nav>
       </Navbar.Collapse>
